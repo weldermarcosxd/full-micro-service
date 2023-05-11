@@ -14,23 +14,7 @@ const Menuitems = [
     id: uniqueId(),
     title: 'Dashboard',
     icon: IconLayoutDashboard,
-    href: '/',
-  },
-  {
-    navlabel: true,
-    subheader: 'Utilities',
-  },
-  {
-    id: uniqueId(),
-    title: 'Typography',
-    icon: IconTypography,
-    href: '/utilities/typography',
-  },
-  {
-    id: uniqueId(),
-    title: 'Shadow',
-    icon: IconCopy,
-    href: '/utilities/shadow',
+    href: '/sample-page',
   },
   {
     navlabel: true,
@@ -51,12 +35,6 @@ const Menuitems = [
   {
     navlabel: true,
     subheader: 'Extra',
-  },
-  {
-    id: uniqueId(),
-    title: 'Icons',
-    icon: IconMoodHappy,
-    href: '/icons',
   },
   {
     id: uniqueId(),

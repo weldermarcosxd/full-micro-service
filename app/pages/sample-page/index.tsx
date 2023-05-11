@@ -7,8 +7,8 @@ import FullLayout from '../../src/layouts/full/FullLayout';
 const SamplePage = () => {
   return (
     <PageContainer title="Sample Page" description="this is Sample page">
-      <DashboardCard title="Sample Page">
-        <Typography>This is a sample page</Typography>
+      <DashboardCard title="Sample Page 3">
+        <Typography>This is a sample page 3</Typography>
       </DashboardCard>
     </PageContainer>
   );
