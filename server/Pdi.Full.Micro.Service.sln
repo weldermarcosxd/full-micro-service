@@ -2,6 +2,16 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pdi.Full.Micro.Service.WebApi", "Pdi.Full.Micro.Service.WebApi\Pdi.Full.Micro.Service.WebApi.csproj", "{A3516E1B-1A6C-435E-9541-E454763469AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pdi.Full.Micro.Service.Entities", "Pdi.Full.Micro.Service.Entities\Pdi.Full.Micro.Service.Entities.csproj", "{A42C8F86-F393-47A2-AF8A-D9CE275C54E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pdi.Full.Micro.Service.Repositories", "Pdi.Full.Micro.Service.Repositories\Pdi.Full.Micro.Service.Repositories.csproj", "{1E5D1B4A-79D6-42EB-A810-754BE5F2149E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pdi.Full.Micro.Service.Services", "Pdi.Full.Micro.Service.Services\Pdi.Full.Micro.Service.Services.csproj", "{F5474D20-9A46-4F58-95BC-C530D7AA6D90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pdi.Full.Micro.Service.Repositories.Abstractions", "Pdi.Full.Micro.Service.Repositories.Abstractions\Pdi.Full.Micro.Service.Repositories.Abstractions.csproj", "{5EF8AEB8-D51B-45C8-9C6E-56055CAB4EBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pdi.Full.Micro.Service.Services.Abstractions", "Pdi.Full.Micro.Service.Services.Abstractions\Pdi.Full.Micro.Service.Services.Abstractions.csproj", "{F71F17D5-1CA7-4000-B220-3ACA1FE69529}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +22,25 @@ Global
 		{A3516E1B-1A6C-435E-9541-E454763469AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3516E1B-1A6C-435E-9541-E454763469AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3516E1B-1A6C-435E-9541-E454763469AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A42C8F86-F393-47A2-AF8A-D9CE275C54E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A42C8F86-F393-47A2-AF8A-D9CE275C54E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A42C8F86-F393-47A2-AF8A-D9CE275C54E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A42C8F86-F393-47A2-AF8A-D9CE275C54E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E5D1B4A-79D6-42EB-A810-754BE5F2149E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E5D1B4A-79D6-42EB-A810-754BE5F2149E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E5D1B4A-79D6-42EB-A810-754BE5F2149E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E5D1B4A-79D6-42EB-A810-754BE5F2149E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5474D20-9A46-4F58-95BC-C530D7AA6D90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5474D20-9A46-4F58-95BC-C530D7AA6D90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5474D20-9A46-4F58-95BC-C530D7AA6D90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5474D20-9A46-4F58-95BC-C530D7AA6D90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EF8AEB8-D51B-45C8-9C6E-56055CAB4EBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EF8AEB8-D51B-45C8-9C6E-56055CAB4EBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EF8AEB8-D51B-45C8-9C6E-56055CAB4EBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EF8AEB8-D51B-45C8-9C6E-56055CAB4EBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F71F17D5-1CA7-4000-B220-3ACA1FE69529}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F71F17D5-1CA7-4000-B220-3ACA1FE69529}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F71F17D5-1CA7-4000-B220-3ACA1FE69529}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F71F17D5-1CA7-4000-B220-3ACA1FE69529}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -28,3 +28,4 @@ Além desses casos de uso, você deve criar uma interface de usuário com React 
 
 Para completar o desafio, você precisará usar seus conhecimentos em dotnet back-end para criar uma API RESTful que gerencie os dados de usuário, produto e venda, bem como gere relatórios gerenciais em PDF. Você também precisará usar mensageria com RabbitMQ e MassTransit para atualizar o estoque de produtos e aprender a criar uma aplicação de front-end usando React para criar a interface do usuário do sistema.
 
+![Diagrama](casos-de-uso.png "Title")

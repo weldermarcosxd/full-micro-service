@@ -4,5 +4,20 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Controllers\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Pdi.Full.Micro.Service.Entities\Pdi.Full.Micro.Service.Entities.csproj" />
+      <ProjectReference Include="..\Pdi.Full.Micro.Service.Repositories\Pdi.Full.Micro.Service.Repositories.csproj" />
+      <ProjectReference Include="..\Pdi.Full.Micro.Service.Services.Abstractions\Pdi.Full.Micro.Service.Services.Abstractions.csproj" />
+      <ProjectReference Include="..\Pdi.Full.Micro.Service.Services\Pdi.Full.Micro.Service.Services.csproj" />
+    </ItemGroup>
+
 
 </Project>
