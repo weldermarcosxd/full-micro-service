@@ -1,0 +1,12 @@
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Repositories.Abstractions\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.deps.json
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Repositories.Abstractions\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.dll
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Repositories.Abstractions\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.pdb
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Repositories.Abstractions\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Entities.dll
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Repositories.Abstractions\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Entities.pdb
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Repositories.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.csprojAssemblyReference.cache
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Repositories.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.AssemblyInfoInputs.cache
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Repositories.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.AssemblyInfo.cs
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Repositories.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.csproj.CoreCompileInputs.cache
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Repositories.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.csproj.CopyComplete
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Repositories.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.dll
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Repositories.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.pdb

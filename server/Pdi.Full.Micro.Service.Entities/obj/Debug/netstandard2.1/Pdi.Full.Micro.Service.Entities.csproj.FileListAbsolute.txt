@@ -1,0 +1,9 @@
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Entities\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Entities.deps.json
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Entities\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Entities.dll
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Entities\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Entities.pdb
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Entities\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Entities.csprojAssemblyReference.cache
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Entities\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Entities.AssemblyInfoInputs.cache
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Entities\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Entities.AssemblyInfo.cs
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Entities\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Entities.csproj.CoreCompileInputs.cache
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Entities\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Entities.dll
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Entities\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Entities.pdb

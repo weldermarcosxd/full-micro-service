@@ -1,0 +1,65 @@
+{
+  "runtimeTarget": {
+    "name": ".NETStandard,Version=v2.1/",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETStandard,Version=v2.1": {},
+    ".NETStandard,Version=v2.1/": {
+      "Pdi.Full.Micro.Service.Repositories/1.0.0": {
+        "dependencies": {
+          "Pdi.Full.Micro.Service.Entities": "1.0.0",
+          "Pdi.Full.Micro.Service.Repositories.Abstractions": "1.0.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.32.0"
+        },
+        "runtime": {
+          "Pdi.Full.Micro.Service.Repositories.dll": {}
+        }
+      },
+      "Pdi.Full.Micro.Service.Entities/1.0.0": {
+        "runtime": {
+          "Pdi.Full.Micro.Service.Entities.dll": {}
+        }
+      },
+      "Pdi.Full.Micro.Service.Repositories.Abstractions/1.0.0": {
+        "dependencies": {
+          "Pdi.Full.Micro.Service.Entities": "1.0.0"
+        },
+        "runtime": {
+          "Pdi.Full.Micro.Service.Repositories.Abstractions.dll": {}
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/3.1.32.0": {
+        "runtime": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "3.1.32.0",
+            "fileVersion": "3.100.3222.56602"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Pdi.Full.Micro.Service.Repositories/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Pdi.Full.Micro.Service.Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Pdi.Full.Micro.Service.Repositories.Abstractions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/3.1.32.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

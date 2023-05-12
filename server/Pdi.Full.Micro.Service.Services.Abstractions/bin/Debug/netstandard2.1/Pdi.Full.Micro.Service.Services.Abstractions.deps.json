@@ -1,0 +1,37 @@
+{
+  "runtimeTarget": {
+    "name": ".NETStandard,Version=v2.1/",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETStandard,Version=v2.1": {},
+    ".NETStandard,Version=v2.1/": {
+      "Pdi.Full.Micro.Service.Services.Abstractions/1.0.0": {
+        "dependencies": {
+          "Pdi.Full.Micro.Service.Entities": "1.0.0"
+        },
+        "runtime": {
+          "Pdi.Full.Micro.Service.Services.Abstractions.dll": {}
+        }
+      },
+      "Pdi.Full.Micro.Service.Entities/1.0.0": {
+        "runtime": {
+          "Pdi.Full.Micro.Service.Entities.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Pdi.Full.Micro.Service.Services.Abstractions/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Pdi.Full.Micro.Service.Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

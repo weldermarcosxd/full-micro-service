@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "aclMdzSIddxx947ZXUWVtdT0hqgxquiHfd7QjZ4YuvOmQFt6+cB5WLj9GgwoWOgVx5+LAj2nEozrddlU+0xUiQ==",
+  "success": true,
+  "projectFilePath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Repositories.Abstractions\\Pdi.Full.Micro.Service.Repositories.Abstractions.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://artifactory.softplan.com.br/artifactory/api/nuget/v3/nuget-local'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
+}
