@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Pdi.Full.Micro.Service.Repositories.Abstractions;
 using Pdi.Full.Micro.Service.Services.Abstractions;
+using Pdi.Full.Micro.Service.Services.Tokens;
 
 namespace Pdi.Full.Micro.Service.Services.Extensions
 {
@@ -9,6 +9,7 @@ namespace Pdi.Full.Micro.Service.Services.Extensions
         public static void AdicionarServicos(this IServiceCollection services)
         {
             services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<ITokenService, TokenService>();
         }
     }
 }

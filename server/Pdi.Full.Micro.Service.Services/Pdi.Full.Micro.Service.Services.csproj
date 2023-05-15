@@ -15,4 +15,14 @@
       </Reference>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Usuarios\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.32" />
+      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.30.1" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="3.1.32" />
+    </ItemGroup>
+
 </Project>

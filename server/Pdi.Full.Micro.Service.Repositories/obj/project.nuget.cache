@@ -1,9 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "lq72ukrqbLHgcDV9Nwi1PXy4T5+ZTKhRqGLjTFjBILfnv//d8NYVc1bYDytQaUiRjvpWXUn7yMdytHLbFnBFoA==",
+  "dgSpecHash": "AAtYs+IqU8tHr26KPhrqRJUsuDF4LaeSmPRMBwC0Vt5fBDYbMJUMVpkzphe6lHlbdjychnIHlJfCEqUPEPSn1w==",
   "success": true,
   "projectFilePath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Repositories\\Pdi.Full.Micro.Service.Repositories.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\welder.silva\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.32\\microsoft.extensions.configuration.3.1.32.nupkg.sha512",
+    "C:\\Users\\welder.silva\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\3.1.32\\microsoft.extensions.configuration.abstractions.3.1.32.nupkg.sha512",
+    "C:\\Users\\welder.silva\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.32\\microsoft.extensions.primitives.3.1.32.nupkg.sha512",
+    "C:\\Users\\welder.silva\\.nuget\\packages\\system.buffers\\4.4.0\\system.buffers.4.4.0.nupkg.sha512",
+    "C:\\Users\\welder.silva\\.nuget\\packages\\system.memory\\4.5.2\\system.memory.4.5.2.nupkg.sha512",
+    "C:\\Users\\welder.silva\\.nuget\\packages\\system.numerics.vectors\\4.4.0\\system.numerics.vectors.4.4.0.nupkg.sha512",
+    "C:\\Users\\welder.silva\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.7.1\\system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512"
+  ],
   "logs": [
     {
       "code": "NU1803",

@@ -1,5 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pdi.Full.Micro.Service.Entities;
 using Pdi.Full.Micro.Service.Services.Abstractions;
@@ -7,14 +8,32 @@ using Pdi.Full.Micro.Service.Services.Abstractions;
 namespace Pdi.Full.Micro.Service.WebApi.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class AcessoController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly ITokenService _tokenService;
 
-        public AcessoController(IUsuarioService usuarioService)
+        public AcessoController(IUsuarioService usuarioService, ITokenService tokenService)
         {
             _usuarioService = usuarioService;
+            _tokenService = tokenService;
+        }
+        
+        [HttpPost]
+        [Route("login")]
+        [AllowAnonymous]
+        public async Task<ActionResult<dynamic>> Authenticate([FromBody]Usuario login, CancellationToken cancellationToken)
+        {
+            var usuario = await _usuarioService.ObterAsync(login.NomeDeUsuario, cancellationToken);
+
+            if (usuario == null)
+                return BadRequest(new { message = "Usuário ou senha inválidos" });
+
+            var token = _tokenService.GerarToken(usuario);
+            usuario.Senha = "";
+            return new { user = usuario, token };
         }
 
         [HttpGet]
@@ -26,6 +45,7 @@ namespace Pdi.Full.Micro.Service.WebApi.Controllers
             return Ok(usuarios);
         }
 
+        [Authorize]
         [HttpGet("{nomeDeUsuario}", Name = "Get")]
         public async Task<IActionResult> Get(string nomeDeUsuario,CancellationToken cancellationToken)
         {

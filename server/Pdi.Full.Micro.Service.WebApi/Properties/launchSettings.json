@@ -20,8 +20,8 @@
     "Pdi.Full.Micro.Service.WebApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/acesso",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "launchUrl": "https://localhost:5001/api/acesso",
+      "applicationUrl": "https://0.0.0.0:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

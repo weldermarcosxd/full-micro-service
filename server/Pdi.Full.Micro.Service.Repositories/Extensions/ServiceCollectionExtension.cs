@@ -7,7 +7,7 @@ namespace Pdi.Full.Micro.Service.Repositories.Extensions
     {
         public static void AdicionarRepositorios(this IServiceCollection services)
         {
-            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddSingleton<IUsuarioRepository, UsuarioRepository>();
         }
     }
 }
