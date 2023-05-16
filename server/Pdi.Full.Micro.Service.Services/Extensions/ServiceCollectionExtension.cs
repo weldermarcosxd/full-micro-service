@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Pdi.Full.Micro.Service.Services.Abstractions;
+using Pdi.Full.Micro.Service.Services.Produtos;
 using Pdi.Full.Micro.Service.Services.Tokens;
 
 namespace Pdi.Full.Micro.Service.Services.Extensions
@@ -10,6 +11,7 @@ namespace Pdi.Full.Micro.Service.Services.Extensions
         {
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IProdutoService, ProdutoService>();
         }
     }
 }

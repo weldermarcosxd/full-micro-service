@@ -31,7 +31,7 @@ namespace Pdi.Full.Micro.Service.Services.Tokens
                     new Claim(ClaimTypes.Name, usuario.NomeDeUsuario),
                     new Claim(ClaimTypes.Role, usuario.Role)
                 }),
-                Expires = DateTime.UtcNow.AddDays(1),
+                Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
                     SecurityAlgorithms.HmacSha256Signature)
             };

@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Pdi.Full.Micro.Service.Repositories.Contexts;
 using Pdi.Full.Micro.Service.Repositories.Extensions;
 using Pdi.Full.Micro.Service.Services.Extensions;
 
@@ -27,6 +28,7 @@ namespace Pdi.Full.Micro.Service.WebApi
             services.AddControllers();
             services.AdicionarRepositorios();
             services.AdicionarServicos();
+            services.AddDbContext<FullServiceDbContext>();
             
             var key = Encoding.ASCII.GetBytes(Configuration.ObterJwtSecret());
             services.AddAuthentication(x =>
@@ -52,7 +54,7 @@ namespace Pdi.Full.Micro.Service.WebApi
             services.AddSwaggerGen();
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new OpenApiInfo {
-                    Title = "JWTToken_Auth_API", Version = "v1"
+                    Title = "Cadastro de Produtos e Vendas", Version = "v1"
                 });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme() {
                     Name = "Authorization",
@@ -90,7 +92,7 @@ namespace Pdi.Full.Micro.Service.WebApi
             
             app.UseSwagger();
             app.UseSwaggerUI(c =>{
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Showing API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
             });
             
 

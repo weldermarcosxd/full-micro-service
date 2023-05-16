@@ -1,7 +1,6 @@
 C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Services.deps.json
 C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Services.dll
 C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Services.pdb
-C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services\bin\Debug\netstandard2.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Entities.dll
 C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.dll
 C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Services.Abstractions.dll
