@@ -9,6 +9,7 @@ namespace Pdi.Full.Micro.Service.Repositories.Extensions
         {
             services.AddSingleton<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<IVendaRepository, VendaRepository>();
         }
     }
 }

@@ -9,10 +9,20 @@
     ".NETStandard,Version=v2.1/": {
       "Pdi.Full.Micro.Service.Services.Abstractions/1.0.0": {
         "dependencies": {
-          "Pdi.Full.Micro.Service.Entities": "1.0.0"
+          "MassTransit.Abstractions": "8.0.15",
+          "Pdi.Full.Micro.Service.Entities": "1.0.0",
+          "Pdi.Full.Micro.Service.Messages": "1.0.0"
         },
         "runtime": {
           "Pdi.Full.Micro.Service.Services.Abstractions.dll": {}
+        }
+      },
+      "MassTransit.Abstractions/8.0.15": {
+        "runtime": {
+          "lib/netstandard2.1/MassTransit.Abstractions.dll": {
+            "assemblyVersion": "8.0.15.0",
+            "fileVersion": "8.0.15.0"
+          }
         }
       },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
@@ -272,6 +282,11 @@
         "runtime": {
           "Pdi.Full.Micro.Service.Entities.dll": {}
         }
+      },
+      "Pdi.Full.Micro.Service.Messages/1.0.0": {
+        "runtime": {
+          "Pdi.Full.Micro.Service.Messages.dll": {}
+        }
       }
     }
   },
@@ -280,6 +295,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "MassTransit.Abstractions/8.0.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mrTptFjSiHAcnfJcE3qk07403g7TO6Z8GGZqmWVnobMvUFhkBunSTnRdAlv4r0HAeAdz/EU5RefZnw5LgI+Rig==",
+      "path": "masstransit.abstractions/8.0.15",
+      "hashPath": "masstransit.abstractions.8.0.15.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "type": "package",
@@ -450,6 +472,11 @@
       "hashPath": "system.threading.tasks.extensions.4.5.4.nupkg.sha512"
     },
     "Pdi.Full.Micro.Service.Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Pdi.Full.Micro.Service.Messages/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -14,3 +14,5 @@ C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services\obj\Debug\n
 C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Services.csproj.CopyComplete
 C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Services.dll
 C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Services.pdb
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Messages.dll
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Messages.pdb

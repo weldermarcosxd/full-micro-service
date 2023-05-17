@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Pdi.Full.Micro.Service.Entities.Models;
+using Pdi.Full.Micro.Service.Messages;
 using Pdi.Full.Micro.Service.Repositories.Abstractions;
 using Pdi.Full.Micro.Service.Services.Abstractions;
 
@@ -61,6 +62,16 @@ namespace Pdi.Full.Micro.Service.Services.Produtos
             cancellationToken.ThrowIfCancellationRequested();
             
             return await _produtoRepository.Remover(id, cancellationToken);
+        }
+
+        public async Task AtualizarEstoqueAsync(DeducaoDeEstoqueMessage deducaoDeEstoqueMessage, CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
+            var produto = await _produtoRepository.Obter(deducaoDeEstoqueMessage.ProdutoId, cancellationToken);
+            produto.QuantidadeEmEstoque -= deducaoDeEstoqueMessage.Quantidade;
+
+            await _produtoRepository.Atualizar(produto.Id, produto, cancellationToken);
         }
     }
 }

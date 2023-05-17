@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Pdi.Full.Micro.Service.Entities.Models;
+using Pdi.Full.Micro.Service.Messages;
 
 namespace Pdi.Full.Micro.Service.Services.Abstractions
 {
@@ -13,5 +14,6 @@ namespace Pdi.Full.Micro.Service.Services.Abstractions
         Task<Produto> AdicionarAsync(Produto produto, CancellationToken cancellationToken);
         Task<Produto> AtualizarAsync(Guid id, Produto produto, CancellationToken cancellationToken);
         Task<bool> RemoverAsync(Guid id, CancellationToken cancellationToken);
+        Task AtualizarEstoqueAsync(DeducaoDeEstoqueMessage deducaoDeEstoqueMessage, CancellationToken cancellationToken);
     }
 }

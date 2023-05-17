@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "W27N3WsMV/GoHjgq6HQRB7/X6iwB6trUC/EQxjN0aIVM/GWXByIjSQ88UtKwbahr75lVJvk+y42B93Id8YkG1g==",
+  "dgSpecHash": "36ksgF8pJHHT2gE60Di0FAikByTuxcAE30AkW9APHd17lAepLS+5LiA4eXY5NV4qVousbO4KnQk6wIaS2RpdfQ==",
   "success": true,
   "projectFilePath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Services\\Pdi.Full.Micro.Service.Services.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\welder.silva\\.nuget\\packages\\masstransit.abstractions\\8.0.15\\masstransit.abstractions.8.0.15.nupkg.sha512",
     "C:\\Users\\welder.silva\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\welder.silva\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",
     "C:\\Users\\welder.silva\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

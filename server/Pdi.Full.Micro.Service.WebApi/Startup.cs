@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Pdi.Full.Micro.Service.Bus.RabbitMqImplementations.Extensions;
 using Pdi.Full.Micro.Service.Repositories.Contexts;
 using Pdi.Full.Micro.Service.Repositories.Extensions;
 using Pdi.Full.Micro.Service.Services.Extensions;
@@ -28,6 +29,7 @@ namespace Pdi.Full.Micro.Service.WebApi
             services.AddControllers();
             services.AdicionarRepositorios();
             services.AdicionarServicos();
+            services.AdicionarRabbitMq();
             services.AddDbContext<FullServiceDbContext>();
             
             var key = Encoding.ASCII.GetBytes(Configuration.ObterJwtSecret());

@@ -25,6 +25,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Pdi.Full.Micro.Service.Bus\Pdi.Full.Micro.Service.Bus.csproj" />
       <ProjectReference Include="..\Pdi.Full.Micro.Service.Entities\Pdi.Full.Micro.Service.Entities.csproj" />
       <ProjectReference Include="..\Pdi.Full.Micro.Service.Repositories\Pdi.Full.Micro.Service.Repositories.csproj" />
       <ProjectReference Include="..\Pdi.Full.Micro.Service.Services.Abstractions\Pdi.Full.Micro.Service.Services.Abstractions.csproj" />

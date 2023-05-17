@@ -6,7 +6,7 @@ using Pdi.Full.Micro.Service.Entities;
 using Pdi.Full.Micro.Service.Repositories.Abstractions;
 using Pdi.Full.Micro.Service.Services.Abstractions;
 
-namespace Pdi.Full.Micro.Service.Services
+namespace Pdi.Full.Micro.Service.Services.Usuarios
 {
     public class UsuarioService : IUsuarioService
     {

@@ -20,7 +20,7 @@ namespace Pdi.Full.Micro.Service.Repositories
         
         public async Task<IEnumerable<Produto>> Obter(CancellationToken cancellationToken) => await _context.Produtos.ToListAsync(cancellationToken);
 
-        public async Task<Produto> Obter(Guid id,CancellationToken cancellationToken) => await _context.Produtos.FindAsync(id, cancellationToken);
+        public async Task<Produto> Obter(Guid id,CancellationToken cancellationToken) => await _context.Produtos.FindAsync(new object[]{ id }, cancellationToken);
 
         public async Task Atualizar(Guid id, Produto produto, CancellationToken cancellationToken)
         {

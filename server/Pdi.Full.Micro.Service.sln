@@ -12,6 +12,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pdi.Full.Micro.Service.Repo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pdi.Full.Micro.Service.Services.Abstractions", "Pdi.Full.Micro.Service.Services.Abstractions\Pdi.Full.Micro.Service.Services.Abstractions.csproj", "{F71F17D5-1CA7-4000-B220-3ACA1FE69529}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pdi.Full.Micro.Service.Messages", "Pdi.Full.Micro.Service.Messages\Pdi.Full.Micro.Service.Messages.csproj", "{6CBF7703-B384-482C-8A8A-9430D4E201F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pdi.Full.Micro.Service.Bus", "Pdi.Full.Micro.Service.Bus\Pdi.Full.Micro.Service.Bus.csproj", "{3F960DE9-8641-418C-865B-DAA98D177A29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pdi.Full.Micro.Service.Bus.Abstractions", "Pdi.Full.Micro.Service.Bus.Abstractions\Pdi.Full.Micro.Service.Bus.Abstractions.csproj", "{8C57D47F-F21D-4464-BBE4-E1485EEB6851}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +48,17 @@ Global
 		{F71F17D5-1CA7-4000-B220-3ACA1FE69529}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F71F17D5-1CA7-4000-B220-3ACA1FE69529}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F71F17D5-1CA7-4000-B220-3ACA1FE69529}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CBF7703-B384-482C-8A8A-9430D4E201F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CBF7703-B384-482C-8A8A-9430D4E201F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CBF7703-B384-482C-8A8A-9430D4E201F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CBF7703-B384-482C-8A8A-9430D4E201F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F960DE9-8641-418C-865B-DAA98D177A29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F960DE9-8641-418C-865B-DAA98D177A29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F960DE9-8641-418C-865B-DAA98D177A29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F960DE9-8641-418C-865B-DAA98D177A29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C57D47F-F21D-4464-BBE4-E1485EEB6851}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C57D47F-F21D-4464-BBE4-E1485EEB6851}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C57D47F-F21D-4464-BBE4-E1485EEB6851}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C57D47F-F21D-4464-BBE4-E1485EEB6851}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

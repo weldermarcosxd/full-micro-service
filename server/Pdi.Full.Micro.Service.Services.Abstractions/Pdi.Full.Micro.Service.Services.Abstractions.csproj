@@ -6,6 +6,11 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Pdi.Full.Micro.Service.Entities\Pdi.Full.Micro.Service.Entities.csproj" />
+      <ProjectReference Include="..\Pdi.Full.Micro.Service.Messages\Pdi.Full.Micro.Service.Messages.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MassTransit.Abstractions" Version="8.0.15" />
     </ItemGroup>
 
 </Project>

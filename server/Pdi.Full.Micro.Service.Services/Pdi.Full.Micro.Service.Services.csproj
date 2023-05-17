@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Pdi.Full.Micro.Service.Messages\Pdi.Full.Micro.Service.Messages.csproj" />
       <ProjectReference Include="..\Pdi.Full.Micro.Service.Repositories.Abstractions\Pdi.Full.Micro.Service.Repositories.Abstractions.csproj" />
       <ProjectReference Include="..\Pdi.Full.Micro.Service.Services.Abstractions\Pdi.Full.Micro.Service.Services.Abstractions.csproj" />
     </ItemGroup>
@@ -13,10 +14,6 @@
       <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
         <HintPath>..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\3.1.32\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
       </Reference>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Usuarios\" />
     </ItemGroup>
 
     <ItemGroup>

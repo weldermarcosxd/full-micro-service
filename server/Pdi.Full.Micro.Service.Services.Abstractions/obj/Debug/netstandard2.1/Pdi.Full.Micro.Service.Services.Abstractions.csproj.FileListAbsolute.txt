@@ -10,3 +10,5 @@ C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services.Abstraction
 C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Services.Abstractions.csproj.CopyComplete
 C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Services.Abstractions.dll
 C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Services.Abstractions.pdb
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services.Abstractions\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Messages.dll
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Services.Abstractions\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Messages.pdb

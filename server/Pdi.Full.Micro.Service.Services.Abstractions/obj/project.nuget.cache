@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Kp7yjRDbb35RXzxgDsxgScBtB5ptheN9tnCbrCEhMcnbMhk0FAK6bdbaVJXJFXtFn9NHiA4JTMdy1TkBDHrsLw==",
+  "dgSpecHash": "Ubc8mqKS4DTPOuGq0LIxQrV68SaeG6mZJsxy6T7Y/+M8WTBFABUWs2dmF+xR2VK5+gETEPFdXt0C+yixlVIQTw==",
   "success": true,
   "projectFilePath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Services.Abstractions\\Pdi.Full.Micro.Service.Services.Abstractions.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\welder.silva\\.nuget\\packages\\masstransit.abstractions\\8.0.15\\masstransit.abstractions.8.0.15.nupkg.sha512",
     "C:\\Users\\welder.silva\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\welder.silva\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.1\\microsoft.bcl.hashcode.1.1.1.nupkg.sha512",
     "C:\\Users\\welder.silva\\.nuget\\packages\\microsoft.entityframeworkcore\\3.1.32\\microsoft.entityframeworkcore.3.1.32.nupkg.sha512",

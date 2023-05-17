@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.1": {
+      "MassTransit.Abstractions/8.0.15": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/MassTransit.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/MassTransit.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
         "type": "package",
         "dependencies": {
@@ -383,10 +396,41 @@
         "runtime": {
           "bin/placeholder/Pdi.Full.Micro.Service.Entities.dll": {}
         }
+      },
+      "Pdi.Full.Micro.Service.Messages/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.1",
+        "compile": {
+          "bin/placeholder/Pdi.Full.Micro.Service.Messages.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Pdi.Full.Micro.Service.Messages.dll": {}
+        }
       }
     }
   },
   "libraries": {
+    "MassTransit.Abstractions/8.0.15": {
+      "sha512": "mrTptFjSiHAcnfJcE3qk07403g7TO6Z8GGZqmWVnobMvUFhkBunSTnRdAlv4r0HAeAdz/EU5RefZnw5LgI+Rig==",
+      "type": "package",
+      "path": "masstransit.abstractions/8.0.15",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NuGet.README.md",
+        "lib/net462/MassTransit.Abstractions.dll",
+        "lib/net462/MassTransit.Abstractions.xml",
+        "lib/net6.0/MassTransit.Abstractions.dll",
+        "lib/net6.0/MassTransit.Abstractions.xml",
+        "lib/netstandard2.0/MassTransit.Abstractions.dll",
+        "lib/netstandard2.0/MassTransit.Abstractions.xml",
+        "lib/netstandard2.1/MassTransit.Abstractions.dll",
+        "lib/netstandard2.1/MassTransit.Abstractions.xml",
+        "masstransit.abstractions.8.0.15.nupkg.sha512",
+        "masstransit.abstractions.nuspec",
+        "mt-logo-small.png"
+      ]
+    },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "sha512": "yuvf07qFWFqtK3P/MRkEKLhn5r2UbSpVueRziSqj0yJQIKFwG1pq9mOayK3zE5qZCTs0CbrwL9M6R8VwqyGy2w==",
       "type": "package",
@@ -967,11 +1011,18 @@
       "type": "project",
       "path": "../Pdi.Full.Micro.Service.Entities/Pdi.Full.Micro.Service.Entities.csproj",
       "msbuildProject": "../Pdi.Full.Micro.Service.Entities/Pdi.Full.Micro.Service.Entities.csproj"
+    },
+    "Pdi.Full.Micro.Service.Messages/1.0.0": {
+      "type": "project",
+      "path": "../Pdi.Full.Micro.Service.Messages/Pdi.Full.Micro.Service.Messages.csproj",
+      "msbuildProject": "../Pdi.Full.Micro.Service.Messages/Pdi.Full.Micro.Service.Messages.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.1": [
-      "Pdi.Full.Micro.Service.Entities >= 1.0.0"
+      "MassTransit.Abstractions >= 8.0.15",
+      "Pdi.Full.Micro.Service.Entities >= 1.0.0",
+      "Pdi.Full.Micro.Service.Messages >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1001,6 +1052,9 @@
           "projectReferences": {
             "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj": {
               "projectPath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj"
+            },
+            "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Messages\\Pdi.Full.Micro.Service.Messages.csproj": {
+              "projectPath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Messages\\Pdi.Full.Micro.Service.Messages.csproj"
             }
           }
         }
@@ -1013,6 +1067,12 @@
     },
     "frameworks": {
       "netstandard2.1": {
+        "dependencies": {
+          "MassTransit.Abstractions": {
+            "target": "Package",
+            "version": "[8.0.15, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
