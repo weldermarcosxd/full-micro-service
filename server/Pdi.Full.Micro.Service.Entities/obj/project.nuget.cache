@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fsWIwMvLLYTscsgqAvot0bgplg9xi/cA1XYeSjomVLgx8z0TZz64iXbszjsf+srrXRIzhvJyb+qglPq+Nz5FPg==",
+  "dgSpecHash": "yXQboXuaaH9zLggzb/tX6c30G3pk2WdweMbHFCODkNA2DA9uWn4VCyOnhN3OorbNrgdszBkuV0KaWmG1JjWJFw==",
   "success": true,
   "projectFilePath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj",
   "expectedPackageFiles": [
@@ -29,12 +29,5 @@
     "C:\\Users\\welder.silva\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.7.1\\system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512",
     "C:\\Users\\welder.silva\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1803",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://artifactory.softplan.com.br/artifactory/api/nuget/v3/nuget-local'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
-    }
-  ]
+  "logs": []
 }

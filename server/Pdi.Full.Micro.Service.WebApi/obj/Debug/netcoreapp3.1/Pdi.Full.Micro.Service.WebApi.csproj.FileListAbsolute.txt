@@ -194,3 +194,15 @@ C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.WebApi\bin\Debug\net
 C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.WebApi\bin\Debug\netcoreapp3.1\Pdi.Full.Micro.Service.Bus.pdb
 C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.WebApi\bin\Debug\netcoreapp3.1\Pdi.Full.Micro.Service.Bus.Abstractions.pdb
 C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.WebApi\bin\Debug\netcoreapp3.1\Pdi.Full.Micro.Service.Messages.pdb
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.WebApi\bin\Debug\netcoreapp3.1\HarfBuzzSharp.dll
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.WebApi\bin\Debug\netcoreapp3.1\QuestPDF.dll
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.WebApi\bin\Debug\netcoreapp3.1\SkiaSharp.dll
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.WebApi\bin\Debug\netcoreapp3.1\SkiaSharp.HarfBuzz.dll
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.WebApi\bin\Debug\netcoreapp3.1\runtimes\osx\native\libHarfBuzzSharp.dylib
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.WebApi\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\libHarfBuzzSharp.dll
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.WebApi\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\libHarfBuzzSharp.dll
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.WebApi\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\libHarfBuzzSharp.dll
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.WebApi\bin\Debug\netcoreapp3.1\runtimes\osx\native\libSkiaSharp.dylib
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.WebApi\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\libSkiaSharp.dll
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.WebApi\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\libSkiaSharp.dll
+C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.WebApi\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\libSkiaSharp.dll
