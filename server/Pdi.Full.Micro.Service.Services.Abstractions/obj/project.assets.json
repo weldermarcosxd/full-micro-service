@@ -1044,6 +1044,7 @@
         "netstandard2.1"
       ],
       "sources": {
+        "http://artifactory.softplan.com.br/artifactory/api/nuget/v3/nuget-local": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1090,5 +1091,13 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.426\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1803",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://artifactory.softplan.com.br/artifactory/api/nuget/v3/nuget-local'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
+    }
+  ]
 }

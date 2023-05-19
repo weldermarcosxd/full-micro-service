@@ -20,6 +20,7 @@
           "netstandard2.1"
         ],
         "sources": {
+          "http://artifactory.softplan.com.br/artifactory/api/nuget/v3/nuget-local": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -70,6 +71,7 @@
           "netstandard2.1"
         ],
         "sources": {
+          "http://artifactory.softplan.com.br/artifactory/api/nuget/v3/nuget-local": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -136,6 +138,7 @@
           "netstandard2.1"
         ],
         "sources": {
+          "http://artifactory.softplan.com.br/artifactory/api/nuget/v3/nuget-local": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -192,6 +195,7 @@
           "netstandard2.1"
         ],
         "sources": {
+          "http://artifactory.softplan.com.br/artifactory/api/nuget/v3/nuget-local": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -242,6 +246,7 @@
           "netstandard2.1"
         ],
         "sources": {
+          "http://artifactory.softplan.com.br/artifactory/api/nuget/v3/nuget-local": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -296,6 +301,7 @@
           "netstandard2.1"
         ],
         "sources": {
+          "http://artifactory.softplan.com.br/artifactory/api/nuget/v3/nuget-local": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -363,6 +369,7 @@
           "netstandard2.1"
         ],
         "sources": {
+          "http://artifactory.softplan.com.br/artifactory/api/nuget/v3/nuget-local": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -426,6 +433,7 @@
           "netstandard2.1"
         ],
         "sources": {
+          "http://artifactory.softplan.com.br/artifactory/api/nuget/v3/nuget-local": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -504,6 +512,7 @@
           "netcoreapp3.1"
         ],
         "sources": {
+          "http://artifactory.softplan.com.br/artifactory/api/nuget/v3/nuget-local": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
