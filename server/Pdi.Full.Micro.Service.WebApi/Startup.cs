@@ -50,6 +50,19 @@ namespace Pdi.Full.Micro.Service.WebApi
                     ValidateAudience = false
                 };
             });
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    policy  =>
+                    {
+                        policy.WithOrigins("https://localhost",
+                            "http://localhost:3000")
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials();
+                    });
+            });
             
             services.Configure<RouteOptions>(options => options.LowercaseUrls = true); 
             
@@ -91,7 +104,9 @@ namespace Pdi.Full.Micro.Service.WebApi
 
             app.UseAuthentication();
             app.UseAuthorization();
-            
+
+            app.UseCors();
+
             app.UseSwagger();
             app.UseSwaggerUI(c =>{
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");

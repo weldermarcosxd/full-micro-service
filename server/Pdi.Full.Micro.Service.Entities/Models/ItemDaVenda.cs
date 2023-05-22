@@ -10,6 +10,6 @@ namespace Pdi.Full.Micro.Service.Entities.Models
         public decimal ValorUnitario { get; set; }
         public decimal Quantidade { get; set; }
         public decimal PercentualDeDesconto { get; set; }
-        public decimal ValorTotalDosItens { get; set; }
+        public decimal ValorTotalDoItem => ValorUnitario * Quantidade * (1 - PercentualDeDesconto / 100);
     }
 }

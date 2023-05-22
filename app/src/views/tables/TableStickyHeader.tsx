@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState, ChangeEvent } from 'react'
+import { useState, useEffect, ChangeEvent } from 'react'
 
 // ** MUI Imports
 import Paper from '@mui/material/Paper'
@@ -53,6 +53,13 @@ interface Data {
   population: number
 }
 
+interface Venda{
+  id: string
+  sequencial: number
+  dataDaVenda: Date
+  valorDaVenda: number
+}
+
 function createData(name: string, code: string, population: number, size: number): Data {
   const density = population / size
 
@@ -68,7 +75,7 @@ const rows = [
   createData('Australia', 'AU', 25475400, 7692024),
   createData('Germany', 'DE', 83019200, 357578),
   createData('Ireland', 'IE', 4857000, 70273),
-  createData('Mexico', 'MX', 126577691, 1972550),
+  createData('Mexico', 'MX', 126577691, 1972550), 
   createData('Japan', 'JP', 126317000, 377973),
   createData('France', 'FR', 67022000, 640679),
   createData('United Kingdom', 'GB', 67545757, 242495),
@@ -81,6 +88,15 @@ const TableStickyHeader = () => {
   // ** States
   const [page, setPage] = useState<number>(0)
   const [rowsPerPage, setRowsPerPage] = useState<number>(10)
+
+  const [vendas, setVendas] = useState([]);
+
+    useEffect(() => {
+        const headers = { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwibmJmIjoxNjg0NzYyMTU2LCJleHAiOjE2ODUzNjY5NTYsImlhdCI6MTY4NDc2MjE1Nn0.xtDg_QROZ77QNtqwafIz_VJiYmmTxK_lteH9WZ7FQRY' };
+        fetch('https://localhost:5001/api/venda', { headers })
+            .then(response => response.json())
+            .then(data => setVendas(data));
+    }, []);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage)
@@ -105,9 +121,9 @@ const TableStickyHeader = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {
+            {vendas.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {
               return (
-                <TableRow hover role='checkbox' tabIndex={-1} key={row.code}>
+                <TableRow hover role='checkbox' tabIndex={-1} key={row.Id}>
                   {columns.map(column => {
                     const value = row[column.id]
 

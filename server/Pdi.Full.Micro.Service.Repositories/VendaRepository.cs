@@ -18,8 +18,8 @@ namespace Pdi.Full.Micro.Service.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Venda>> ObterAsync(CancellationToken cancellationToken)
-            => await _context.Vendas.ToListAsync(cancellationToken);
+        public async Task<IEnumerable<Venda>> ObterAsync(CancellationToken cancellationToken) 
+            => await _context.Vendas.Include(x => x.Itens).ToListAsync(cancellationToken);
 
         public async Task<Venda> ObterAsync(Guid id, CancellationToken cancellationToken)
             => await _context.Vendas.FindAsync(id, cancellationToken);
