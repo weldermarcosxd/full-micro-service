@@ -3,6 +3,7 @@ import { useState, useEffect, ChangeEvent } from 'react'
 
 // ** MUI Imports
 import Paper from '@mui/material/Paper'
+import Checkbox from '@mui/material/Checkbox';
 import Table from '@mui/material/Table'
 import TableRow from '@mui/material/TableRow'
 import TableHead from '@mui/material/TableHead'
@@ -10,48 +11,21 @@ import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TablePagination from '@mui/material/TablePagination'
+import { right } from '@popperjs/core';
 
 interface Column {
-  id: 'name' | 'code' | 'population' | 'size' | 'density'
+  id: 'id' | 'sequencial' | 'dataDaVenda' | 'valorDaVenda'
   label: string
   minWidth?: number
   align?: 'right'
-  format?: (value: number) => string
+  format?: (value: any) => string
 }
 
 const columns: readonly Column[] = [
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
-  {
-    id: 'population',
-    label: 'Population',
-    minWidth: 170,
-    align: 'right',
-    format: (value: number) => value.toLocaleString('en-US')
-  },
-  {
-    id: 'size',
-    label: 'Size\u00a0(km\u00b2)',
-    minWidth: 170,
-    align: 'right',
-    format: (value: number) => value.toLocaleString('en-US')
-  },
-  {
-    id: 'density',
-    label: 'Density',
-    minWidth: 170,
-    align: 'right',
-    format: (value: number) => value.toFixed(2)
-  }
+  { id: 'sequencial', label: 'Sequencial', minWidth: 100 },
+  { id: 'dataDaVenda', label: 'Data da venda', minWidth: 100, format: (value : Date) => value.toLocaleString('pt-BR') },
+  { id: 'valorDaVenda', label: 'Valor da Venda', minWidth: 100, align: right, format: (value : number) => value.toLocaleString('pr-BR', { style: 'currency', currency: 'BRL',  }) }
 ]
-
-interface Data {
-  name: string
-  code: string
-  size: number
-  density: number
-  population: number
-}
 
 interface Venda{
   id: string
@@ -60,36 +34,12 @@ interface Venda{
   valorDaVenda: number
 }
 
-function createData(name: string, code: string, population: number, size: number): Data {
-  const density = population / size
-
-  return { name, code, population, size, density }
-}
-
-const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('United States', 'US', 327167434, 9833520),
-  createData('Canada', 'CA', 37602103, 9984670),
-  createData('Australia', 'AU', 25475400, 7692024),
-  createData('Germany', 'DE', 83019200, 357578),
-  createData('Ireland', 'IE', 4857000, 70273),
-  createData('Mexico', 'MX', 126577691, 1972550), 
-  createData('Japan', 'JP', 126317000, 377973),
-  createData('France', 'FR', 67022000, 640679),
-  createData('United Kingdom', 'GB', 67545757, 242495),
-  createData('Russia', 'RU', 146793744, 17098246),
-  createData('Nigeria', 'NG', 200962417, 923768),
-  createData('Brazil', 'BR', 210147125, 8515767)
-]
-
 const TableStickyHeader = () => {
   // ** States
   const [page, setPage] = useState<number>(0)
   const [rowsPerPage, setRowsPerPage] = useState<number>(10)
 
-  const [vendas, setVendas] = useState([]);
+  const [vendas, setVendas] = useState<Venda[]>([]);
 
     useEffect(() => {
         const headers = { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwibmJmIjoxNjg0NzYyMTU2LCJleHAiOjE2ODUzNjY5NTYsImlhdCI6MTY4NDc2MjE1Nn0.xtDg_QROZ77QNtqwafIz_VJiYmmTxK_lteH9WZ7FQRY' };
@@ -121,9 +71,9 @@ const TableStickyHeader = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {vendas.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => {
+            {vendas.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
               return (
-                <TableRow hover role='checkbox' tabIndex={-1} key={row.Id}>
+                <TableRow hover role='checkbox' tabIndex={-1} key={row.id}>
                   {columns.map(column => {
                     const value = row[column.id]
 
@@ -142,7 +92,7 @@ const TableStickyHeader = () => {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component='div'
-        count={rows.length}
+        count={vendas.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
