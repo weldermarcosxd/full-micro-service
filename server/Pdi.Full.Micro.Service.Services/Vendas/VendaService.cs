@@ -23,7 +23,11 @@ namespace Pdi.Full.Micro.Service.Services.Vendas
         }
 
         public async Task<IEnumerable<Venda>> ObterAsync(CancellationToken cancellationToken)
-            =>  await _vendaRepository.ObterAsync(cancellationToken);
+        {
+            var vendas = await _vendaRepository.ObterAsync(cancellationToken);
+            return vendas.OrderByDescending(x => x.Sequencial);
+        }
+            
 
         public async Task<Venda> ObterAsync(Guid id, CancellationToken cancellationToken)
             => await _vendaRepository.ObterAsync(id, cancellationToken);
@@ -40,6 +44,8 @@ namespace Pdi.Full.Micro.Service.Services.Vendas
                 foreach (var item in venda.Itens)
                     item.Sequencial = ++sequencial;
             }
+            
+            venda.DataDaVenda = DateTime.Now;
 
             await _vendaRepository.Adicionar(venda, cancellationToken);
 

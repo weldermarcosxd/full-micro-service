@@ -33,9 +33,6 @@ namespace Pdi.Full.Micro.Service.WebApi.Migrations
                     b.Property<int>("Sequencial")
                         .HasColumnType("INTEGER");
 
-                    b.Property<decimal>("ValorTotalDosItens")
-                        .HasColumnType("TEXT");
-
                     b.Property<decimal>("ValorUnitario")
                         .HasColumnType("TEXT");
 
