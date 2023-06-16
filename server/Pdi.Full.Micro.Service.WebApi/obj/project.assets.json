@@ -10872,6 +10872,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {
             "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Bus\\Pdi.Full.Micro.Service.Bus.csproj": {
               "projectPath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Bus\\Pdi.Full.Micro.Service.Bus.csproj"
@@ -10899,6 +10900,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
@@ -10939,7 +10941,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -10951,7 +10954,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.426\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
       }
     }
   },

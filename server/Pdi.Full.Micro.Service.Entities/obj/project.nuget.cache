@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fsWIwMvLLYTscsgqAvot0bgplg9xi/cA1XYeSjomVLgx8z0TZz64iXbszjsf+srrXRIzhvJyb+qglPq+Nz5FPg==",
+  "dgSpecHash": "eZnXZFjrcO7HtS4L6ZK2gDdrtbslBf1i70GjYVN4BMtO7SzmZhefxU5UrhcFZVLwWwZHCoCfFrUOTPFZdpOZFg==",
   "success": true,
   "projectFilePath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj",
   "expectedPackageFiles": [

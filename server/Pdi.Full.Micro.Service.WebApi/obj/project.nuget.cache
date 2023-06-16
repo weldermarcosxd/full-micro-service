@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "NDRVQVmo2nZgHHOubSK1q7ns3A05e9oYS4he9JrFTugIjdZX44RM0V1AXlwj0GfZdu36vL5A4qbHQ+nLgwPf1w==",
+  "dgSpecHash": "DuulxqLubljYz5sGyE7lw7EdX/XUHZUCmYCErSMqn9sltupPiwpyT1cV7YVDbfVQxqPrkAFXI1hkaFDIjUY4MQ==",
   "success": true,
   "projectFilePath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.WebApi\\Pdi.Full.Micro.Service.WebApi.csproj",
   "expectedPackageFiles": [

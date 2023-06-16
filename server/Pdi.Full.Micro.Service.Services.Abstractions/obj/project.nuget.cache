@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Ubc8mqKS4DTPOuGq0LIxQrV68SaeG6mZJsxy6T7Y/+M8WTBFABUWs2dmF+xR2VK5+gETEPFdXt0C+yixlVIQTw==",
+  "dgSpecHash": "OKE62a9GZnBc4nrj67WIpN5jTCd7td7efizeX0/jmwEnvQE1hfBky68PjgRn8BMVb+4a0tOygP4kb9A+SkTR0Q==",
   "success": true,
   "projectFilePath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Services.Abstractions\\Pdi.Full.Micro.Service.Services.Abstractions.csproj",
   "expectedPackageFiles": [

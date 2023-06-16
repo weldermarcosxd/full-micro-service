@@ -1049,6 +1049,7 @@
       },
       "frameworks": {
         "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
           "projectReferences": {
             "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj": {
               "projectPath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj"
@@ -1067,6 +1068,7 @@
     },
     "frameworks": {
       "netstandard2.1": {
+        "targetAlias": "netstandard2.1",
         "dependencies": {
           "MassTransit.Abstractions": {
             "target": "Package",
@@ -1079,7 +1081,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -1088,7 +1091,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.426\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
       }
     }
   },
