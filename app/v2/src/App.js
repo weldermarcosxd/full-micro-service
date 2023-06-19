@@ -4,44 +4,47 @@ import { Component } from 'react';
 
 class App extends Component{
 
-    state = {
-        nome: 'Welder Marcos',
-        clicks: 0
-    };
+  state = {
+    posts: []
+  }
 
-    tratarClickNoParagrafo = () => {
-      const { clicks } = this.state;
-      this.setState({clicks: clicks + 1});
-    }
+  componentDidMount(){
+    this.loadPosts();
+  }
 
-    tratarClickNoLink = (event) => {
-      event.preventDefault();
-      const { clicks } = this.state;
-      this.setState({clicks: clicks - 1});
-    }
+  loadPosts = async () => {
+    const postsResponse = fetch("https://jsonplaceholder.typicode.com/posts");
+    const photosResponse = fetch("https://jsonplaceholder.typicode.com/photos");
 
-    render() {
-      const { nome, clicks } = this.state;
+    const [posts, photos] = await Promise.all([postsResponse, photosResponse]);
+    const postsJson = await posts.json();
+    const photosJson = await photos.json();
 
-      return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p onClick={this.tratarClickNoParagrafo}>
-              {nome} {clicks}
-            </p>
-            <a
-              onClick={this.tratarClickNoLink}
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
-        </div>
-      );
+    const postsAndPhostos = postsJson.map((post, index) => {
+      return { ...post, cover: photosJson[index].url }
+    });
+
+    this.setState({posts:  postsAndPhostos });
+  };
+
+  render() {
+    const { posts, contador } = this.state;
+
+    return (
+      <section className='container'>
+        <div className="posts">
+        {posts.map(post => (
+          <div key={post.id} className='post'>
+            <img src={post.cover} alt={post.title} />
+            <div className='post-content'>
+              <h1>{post.title}</h1>
+              <p>{post.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+      </section>
+    );
   }
 }
 
