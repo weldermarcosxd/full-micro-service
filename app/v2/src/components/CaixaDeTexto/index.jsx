@@ -1,3 +1,5 @@
+import './styles.css';
+
 import { Component } from "react";
 
 export class CaixaDeTexto extends Component{
@@ -6,7 +8,7 @@ export class CaixaDeTexto extends Component{
         const { value, onChange } = this.props;
 
         return (
-            <input onChange={onChange} value={value} type="search"></input>
+            <input className='text-input' onChange={onChange} value={value} type='search' placeholder='Digite a pesquisa'></input>
         );
     }
 }

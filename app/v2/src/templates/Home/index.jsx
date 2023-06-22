@@ -46,16 +46,31 @@ class Home extends Component{
     const { posts, currentPage, postsPerPage, allPosts, searchValue } = this.state;
     const noMorePosts = currentPage + postsPerPage >= allPosts.length;
 
+    const filteredPosts = !!searchValue ? allPosts.filter(post => {
+      return post.title.toLowerCase().includes(searchValue.toLocaleLowerCase())
+    }) : posts;
+
     return (
       <section className='container'>
-        {!!searchValue && (
-          <h1>{searchValue}</h1>
+        <div className='search-container'> 
+          <CaixaDeTexto onChange={this.handleChange} value={searchValue}></CaixaDeTexto>
+        </div>
+
+        {filteredPosts.length > 0 &&
+        (
+          <Posts posts={filteredPosts}></Posts>
         )}
-        <CaixaDeTexto onChange={this.handleChange} value={searchValue}></CaixaDeTexto>
-        <Posts posts={posts}></Posts>
+          
+        {filteredPosts.length === 0 && (
+          <div>
+            <h3>Pesquisa não retornou valor</h3>
+            <Posts posts={posts}></Posts>
+          </div>
+        )}
+        
         {!searchValue && (
           <div className='button-container'>
-          <Botao text="Loads" onClick={this.loadMorePosts} disabled={noMorePosts}></Botao>
+          <Botao text="Carregar mais posts" onClick={this.loadMorePosts} disabled={noMorePosts}></Botao>
         </div>
         )}
         
