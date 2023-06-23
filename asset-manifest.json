@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/full-micro-service/static/css/main.10c17491.css",
-    "main.js": "/full-micro-service/static/js/main.9bc78e81.js",
+    "main.js": "/full-micro-service/static/js/main.ad5c7ba6.js",
     "index.html": "/full-micro-service/index.html",
     "main.10c17491.css.map": "/full-micro-service/static/css/main.10c17491.css.map",
-    "main.9bc78e81.js.map": "/full-micro-service/static/js/main.9bc78e81.js.map"
+    "main.ad5c7ba6.js.map": "/full-micro-service/static/js/main.ad5c7ba6.js.map"
   },
   "entrypoints": [
     "static/css/main.10c17491.css",
-    "static/js/main.9bc78e81.js"
+    "static/js/main.ad5c7ba6.js"
   ]
 }
