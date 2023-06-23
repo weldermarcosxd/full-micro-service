@@ -1,5 +1,6 @@
 {
   "name": "v2",
+  "homepage": "https://weldermarcosxd.github.io/full-micro-service/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
