@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { Botao } from ".";
 import userEvent from "@testing-library/user-event";
 
@@ -20,7 +20,7 @@ describe("<Botao />", () => {
         const botao = screen.getByRole("button", {name: /load more/i });
         userEvent.click(botao);
 
-        expect(fn).toHaveBeenCalledTimes(1);
+        expect(fn).toHaveBeenCalledTimes(1); 
     });
 
     it("should be disabled when disabled is true", () => {
