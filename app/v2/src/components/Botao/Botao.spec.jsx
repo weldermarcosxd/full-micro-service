@@ -41,4 +41,10 @@ describe("<Botao />", () => {
         expect(botao).toBeEnabled();
     });
 
+    it("should match snapshot", () => {
+        const {container} = render(<Botao disabled={false} text="Load More"></Botao>);
+        expect.assertions(1);
+        expect(container.firstChild).toMatchSnapshot();
+    });
+
 });

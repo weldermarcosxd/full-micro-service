@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CaixaDeTexto /> should match snapshot 1`] = `
+<input
+  class="text-input"
+  placeholder="Digite a pesquisa"
+  type="search"
+  value="valor escrito"
+/>
+`;

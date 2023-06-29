@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Botao /> should match snapshot 1`] = `
+<button
+  class="botao"
+>
+  Load More
+</button>
+`;
