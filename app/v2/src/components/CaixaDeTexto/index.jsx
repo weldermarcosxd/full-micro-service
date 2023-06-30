@@ -1,14 +1,27 @@
-import './styles.css';
+import "./styles.css";
+import PropTypes from "prop-types";
 
 import { Component } from "react";
 
-export class CaixaDeTexto extends Component{
-    render(){
+export class CaixaDeTexto extends Component {
+  static get propTypes() {
+    return {
+      value: PropTypes.string,
+      onChange: PropTypes.func,
+    };
+  }
 
-        const { value, onChange } = this.props;
+  render() {
+    const { value, onChange } = this.props;
 
-        return (
-            <input className='text-input' onChange={onChange} value={value} type='search' placeholder='Digite a pesquisa'></input>
-        );
-    }
+    return (
+      <input
+        className="text-input"
+        onChange={onChange}
+        value={value}
+        type="search"
+        placeholder="Digite a pesquisa"
+      ></input>
+    );
+  }
 }

@@ -1,7 +1,5 @@
 describe("<Home />", () => {
-
-  it('should be true', () => {
+  it("should be true", () => {
     expect(1).toBe(1);
   });
-  
-})
+});

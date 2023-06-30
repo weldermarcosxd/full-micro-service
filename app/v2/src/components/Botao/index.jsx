@@ -1,16 +1,24 @@
-import './styles.css';
+import "./styles.css";
+import PropTypes from "prop-types";
 
 import { Component } from "react";
 
 export class Botao extends Component {
-    render(){
+  static get propTypes() {
+    return {
+      text: PropTypes.string,
+      onClick: PropTypes.func,
+      disabled: PropTypes.bool,
+    };
+  }
 
-        const { text, onClick, disabled } = this.props;
+  render() {
+    const { text, onClick, disabled } = this.props;
 
-        return (
-            <button className='botao' onClick={onClick} disabled={disabled}>
-                {text}
-            </button>
-        )
-    }
+    return (
+      <button className="botao" onClick={onClick} disabled={disabled}>
+        {text}
+      </button>
+    );
+  }
 }
