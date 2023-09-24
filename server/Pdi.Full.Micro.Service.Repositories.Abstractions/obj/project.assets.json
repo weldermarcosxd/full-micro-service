@@ -975,33 +975,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\welder.silva\\.nuget\\packages\\": {}
+    "C:\\Users\\Welder\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Repositories.Abstractions\\Pdi.Full.Micro.Service.Repositories.Abstractions.csproj",
+      "projectUniqueName": "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Repositories.Abstractions\\Pdi.Full.Micro.Service.Repositories.Abstractions.csproj",
       "projectName": "Pdi.Full.Micro.Service.Repositories.Abstractions",
-      "projectPath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Repositories.Abstractions\\Pdi.Full.Micro.Service.Repositories.Abstractions.csproj",
-      "packagesPath": "C:\\Users\\welder.silva\\.nuget\\packages\\",
-      "outputPath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Repositories.Abstractions\\obj\\",
+      "projectPath": "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Repositories.Abstractions\\Pdi.Full.Micro.Service.Repositories.Abstractions.csproj",
+      "packagesPath": "C:\\Users\\Welder\\.nuget\\packages\\",
+      "outputPath": "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Repositories.Abstractions\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\welder.silva\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Welder\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.1"
       ],
       "sources": {
-        "http://artifactory.softplan.com.br/artifactory/api/nuget/v3/nuget-local": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "projectReferences": {
-            "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj": {
-              "projectPath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj"
+            "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj": {
+              "projectPath": "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj"
             }
           }
         }
@@ -1031,16 +1030,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.414\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1803",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "You are running the 'restore' operation with an 'HTTP' source, 'http://artifactory.softplan.com.br/artifactory/api/nuget/v3/nuget-local'. Non-HTTPS access will be removed in a future version. Consider migrating to an 'HTTPS' source."
-    }
-  ]
+  }
 }

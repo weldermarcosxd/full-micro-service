@@ -1,26 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Services.Abstractions\\Pdi.Full.Micro.Service.Services.Abstractions.csproj": {}
+    "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Services.Abstractions\\Pdi.Full.Micro.Service.Services.Abstractions.csproj": {}
   },
   "projects": {
-    "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj": {
+    "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj",
+        "projectUniqueName": "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj",
         "projectName": "Pdi.Full.Micro.Service.Entities",
-        "projectPath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj",
-        "packagesPath": "C:\\Users\\welder.silva\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Entities\\obj\\",
+        "projectPath": "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj",
+        "packagesPath": "C:\\Users\\Welder\\.nuget\\packages\\",
+        "outputPath": "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Entities\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\welder.silva\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Welder\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
         ],
         "sources": {
-          "http://artifactory.softplan.com.br/artifactory/api/nuget/v3/nuget-local": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -60,27 +59,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.414\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Messages\\Pdi.Full.Micro.Service.Messages.csproj": {
+    "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Messages\\Pdi.Full.Micro.Service.Messages.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Messages\\Pdi.Full.Micro.Service.Messages.csproj",
+        "projectUniqueName": "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Messages\\Pdi.Full.Micro.Service.Messages.csproj",
         "projectName": "Pdi.Full.Micro.Service.Messages",
-        "projectPath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Messages\\Pdi.Full.Micro.Service.Messages.csproj",
-        "packagesPath": "C:\\Users\\welder.silva\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Messages\\obj\\",
+        "projectPath": "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Messages\\Pdi.Full.Micro.Service.Messages.csproj",
+        "packagesPath": "C:\\Users\\Welder\\.nuget\\packages\\",
+        "outputPath": "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Messages\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\welder.silva\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Welder\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
         ],
         "sources": {
-          "http://artifactory.softplan.com.br/artifactory/api/nuget/v3/nuget-local": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -114,38 +112,37 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.414\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Services.Abstractions\\Pdi.Full.Micro.Service.Services.Abstractions.csproj": {
+    "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Services.Abstractions\\Pdi.Full.Micro.Service.Services.Abstractions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Services.Abstractions\\Pdi.Full.Micro.Service.Services.Abstractions.csproj",
+        "projectUniqueName": "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Services.Abstractions\\Pdi.Full.Micro.Service.Services.Abstractions.csproj",
         "projectName": "Pdi.Full.Micro.Service.Services.Abstractions",
-        "projectPath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Services.Abstractions\\Pdi.Full.Micro.Service.Services.Abstractions.csproj",
-        "packagesPath": "C:\\Users\\welder.silva\\.nuget\\packages\\",
-        "outputPath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Services.Abstractions\\obj\\",
+        "projectPath": "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Services.Abstractions\\Pdi.Full.Micro.Service.Services.Abstractions.csproj",
+        "packagesPath": "C:\\Users\\Welder\\.nuget\\packages\\",
+        "outputPath": "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Services.Abstractions\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\welder.silva\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Welder\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
         ],
         "sources": {
-          "http://artifactory.softplan.com.br/artifactory/api/nuget/v3/nuget-local": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netstandard2.1": {
             "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj": {
-                "projectPath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj"
+              "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj": {
+                "projectPath": "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Entities\\Pdi.Full.Micro.Service.Entities.csproj"
               },
-              "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Messages\\Pdi.Full.Micro.Service.Messages.csproj": {
-                "projectPath": "C:\\dev\\pdi\\full-micro-service\\server\\Pdi.Full.Micro.Service.Messages\\Pdi.Full.Micro.Service.Messages.csproj"
+              "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Messages\\Pdi.Full.Micro.Service.Messages.csproj": {
+                "projectPath": "c:\\dev\\dotnet\\fullstack\\server\\Pdi.Full.Micro.Service.Messages\\Pdi.Full.Micro.Service.Messages.csproj"
               }
             }
           }
@@ -181,7 +178,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.414\\RuntimeIdentifierGraph.json"
         }
       }
     }

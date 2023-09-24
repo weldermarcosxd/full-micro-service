@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -29,7 +30,7 @@ namespace Pdi.Full.Micro.Service.WebApi
             services.AddControllers();
             services.AdicionarRepositorios();
             services.AdicionarServicos();
-            services.AdicionarRabbitMq();
+            services.AdicionarRabbitMq(Configuration);
             services.AddDbContext<FullServiceDbContext>();
             
             var key = Encoding.ASCII.GetBytes(Configuration.ObterJwtSecret());

@@ -10,3 +10,16 @@ C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Repositories.Abstrac
 C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Repositories.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.csproj.CopyComplete
 C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Repositories.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.dll
 C:\dev\pdi\full-micro-service\server\Pdi.Full.Micro.Service.Repositories.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.pdb
+c:\dev\dotnet\fullstack\server\Pdi.Full.Micro.Service.Repositories.Abstractions\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.deps.json
+c:\dev\dotnet\fullstack\server\Pdi.Full.Micro.Service.Repositories.Abstractions\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.dll
+c:\dev\dotnet\fullstack\server\Pdi.Full.Micro.Service.Repositories.Abstractions\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.pdb
+c:\dev\dotnet\fullstack\server\Pdi.Full.Micro.Service.Repositories.Abstractions\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Entities.dll
+c:\dev\dotnet\fullstack\server\Pdi.Full.Micro.Service.Repositories.Abstractions\bin\Debug\netstandard2.1\Pdi.Full.Micro.Service.Entities.pdb
+c:\dev\dotnet\fullstack\server\Pdi.Full.Micro.Service.Repositories.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.csproj.AssemblyReference.cache
+c:\dev\dotnet\fullstack\server\Pdi.Full.Micro.Service.Repositories.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.GeneratedMSBuildEditorConfig.editorconfig
+c:\dev\dotnet\fullstack\server\Pdi.Full.Micro.Service.Repositories.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.AssemblyInfoInputs.cache
+c:\dev\dotnet\fullstack\server\Pdi.Full.Micro.Service.Repositories.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.AssemblyInfo.cs
+c:\dev\dotnet\fullstack\server\Pdi.Full.Micro.Service.Repositories.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.csproj.CoreCompileInputs.cache
+c:\dev\dotnet\fullstack\server\Pdi.Full.Micro.Service.Repositories.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.csproj.CopyComplete
+c:\dev\dotnet\fullstack\server\Pdi.Full.Micro.Service.Repositories.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.dll
+c:\dev\dotnet\fullstack\server\Pdi.Full.Micro.Service.Repositories.Abstractions\obj\Debug\netstandard2.1\Pdi.Full.Micro.Service.Repositories.Abstractions.pdb
