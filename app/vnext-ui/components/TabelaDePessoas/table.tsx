@@ -23,9 +23,9 @@ export default function TabelaDePessoas() {
   const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set([]));
   const [visibleColumns, setVisibleColumns] = useState<Selection>(new Set(INITIAL_VISIBLE_COLUMNS));
   const [statusFilter, setStatusFilter] = useState<Selection>("all");
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(50);
   const [sortDescriptor, setSortDescriptor] = useState<SortDescriptor>({
-    column: "age",
+    column: "id",
     direction: "ascending",
   });
 
@@ -83,6 +83,7 @@ export default function TabelaDePessoas() {
             avatarProps={{radius: "lg", src: user.avatar}}
             description={user.email}
             name={cellValue}
+            
           >
             {user.email}
           </User>
@@ -275,9 +276,6 @@ export default function TabelaDePessoas() {
       isHeaderSticky
       bottomContent={bottomContent}
       bottomContentPlacement="outside"
-      classNames={{
-        wrapper: "max-h-[382px]",
-      }}
       selectedKeys={selectedKeys}
       selectionMode="multiple"
       sortDescriptor={sortDescriptor}
