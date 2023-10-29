@@ -1,28 +1,19 @@
 import { useState, useMemo }  from "react";
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination, Spinner, getKeyValue} from "@nextui-org/react";
 import useSWR from "swr";
+import ObterPersonagens from "./utils/data";
 
 const fetcher = (url : string) => fetch(url).then((res) => res.json());
 
-interface Character {
-    name: string
-    height: string
-    mass: string
-    hair_color: string
-    skin_color: string
-    eye_color: string
-    birth_year: string
-    gender: string
-    homeworld: string
-}
-
-export default function Table2() {
-  const [page, setPage] = useState(1);
+export default function TabelaDePersonagens() {
+  const [pageNumber, setPage] = useState(1);
 
   const rowsPerPage = 15;
-  const {data, isLoading} = useSWR(`https://pokeapi.co/api/v2/pokemon?limit=${rowsPerPage}&offset=${(page-1)*rowsPerPage}`, fetcher, {
+  const {data, isLoading} = useSWR(`https://pokeapi.co/api/v2/pokemon?limit=${rowsPerPage}&offset=${(pageNumber-1)*rowsPerPage}`, fetcher, {
     keepPreviousData: true,
   });
+
+  ObterPersonagens(rowsPerPage, pageNumber);
 
   const pages = useMemo(() => {
     return data?.count ? Math.ceil(data.count / rowsPerPage) : 0;
@@ -43,7 +34,7 @@ export default function Table2() {
               showControls
               showShadow
               color="primary"
-              page={page}
+              page={pageNumber}
               total={pages}
               onChange={(page) => setPage(page)}
             />
@@ -52,9 +43,9 @@ export default function Table2() {
       }
     >
       <TableHeader className="text-center">
-        <TableColumn key="row_id">#</TableColumn>
-        <TableColumn align="end" key="name">Name</TableColumn>
-        <TableColumn align="start" key="height">Height</TableColumn>
+        <TableColumn align="center" key="row_id">#</TableColumn>
+        <TableColumn align="center" key="name">Name</TableColumn>
+        <TableColumn align="center" key="url">Url</TableColumn>
         <TableColumn align="center" key="mass">Mass</TableColumn>
         <TableColumn key="birth_year">Birth year</TableColumn>
       </TableHeader>
@@ -65,7 +56,7 @@ export default function Table2() {
       >
         {(item) => (
           <TableRow key={item?.name}>
-            {(columnKey) => <TableCell align="left">{getKeyValue(item, columnKey)}</TableCell>}
+            {(columnKey) => <TableCell align="center">{getKeyValue(item, columnKey)}</TableCell>}
           </TableRow>
         )}
       </TableBody>

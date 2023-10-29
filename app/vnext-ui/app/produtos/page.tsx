@@ -2,7 +2,7 @@
 
 import { Divider } from "@nextui-org/divider";
 import React from "react";
-import Table2 from "@/components/TabelaDePessoas/table2";
+import TabelaDePersonagens from "@/components/TabelaDeHerois/table";
 
 export default function ProdutosPage()
 {
@@ -13,7 +13,7 @@ export default function ProdutosPage()
 			</div>
 			<Divider className="my-4" />
 			{/* <TabelaDePessoas></TabelaDePessoas> */}
-			<Table2></Table2>
+			<TabelaDePersonagens></TabelaDePersonagens>
 		</>
 	)
 }
