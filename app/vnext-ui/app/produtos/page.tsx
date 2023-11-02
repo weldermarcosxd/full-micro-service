@@ -12,7 +12,6 @@ export default function ProdutosPage()
 				<h1 className="tracking-tight inline font-semibold text-[2.3rem] lg:text-5xl leading-9 m2">Produtos</h1>
 			</div>
 			<Divider className="my-4" />
-			{/* <TabelaDePessoas></TabelaDePessoas> */}
 			<TabelaDePersonagens></TabelaDePersonagens>
 		</>
 	)

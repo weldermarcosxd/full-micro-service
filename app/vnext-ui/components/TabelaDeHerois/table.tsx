@@ -1,7 +1,7 @@
 import { useState, useMemo }  from "react";
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination, Spinner, getKeyValue} from "@nextui-org/react";
 import useSWR from "swr";
-import ObterPersonagens from "./utils/data";
+import { Cerveja } from "./types/cervejas";
 
 const fetcher = (url : string) => fetch(url).then((res) => res.json());
 
@@ -9,14 +9,13 @@ export default function TabelaDePersonagens() {
   const [pageNumber, setPage] = useState(1);
 
   const rowsPerPage = 15;
-  const {data, isLoading} = useSWR(`https://pokeapi.co/api/v2/pokemon?limit=${rowsPerPage}&offset=${(pageNumber-1)*rowsPerPage}`, fetcher, {
+  const {data, isLoading} = useSWR(`https://api.punkapi.com/v2/beers?per_page=${rowsPerPage}&page=${pageNumber}`, fetcher, {
     keepPreviousData: true,
   });
 
-  ObterPersonagens(rowsPerPage, pageNumber);
 
   const pages = useMemo(() => {
-    return data?.count ? Math.ceil(data.count / rowsPerPage) : 0;
+    return data?.results?.length ? Math.ceil(data.count / rowsPerPage) : 0;
   }, [data?.count, rowsPerPage]);
 
   const loadingState = isLoading || data?.results.length === 0 ? "loading" : "idle";
@@ -43,14 +42,14 @@ export default function TabelaDePersonagens() {
       }
     >
       <TableHeader className="text-center">
-        <TableColumn align="center" key="row_id">#</TableColumn>
+        <TableColumn align="center" key="id">#</TableColumn>
         <TableColumn align="center" key="name">Name</TableColumn>
-        <TableColumn align="center" key="url">Url</TableColumn>
-        <TableColumn align="center" key="mass">Mass</TableColumn>
-        <TableColumn key="birth_year">Birth year</TableColumn>
+        <TableColumn align="center" key="image_url">Url</TableColumn>
+        <TableColumn align="center" key="first_brewed">Mass</TableColumn>
+        <TableColumn key="brewers_tips">Birth year</TableColumn>
       </TableHeader>
       <TableBody
-        items={(data?.results ?? []) as Character[] } 
+        items={(data?.results ?? []) as Cerveja[] } 
         loadingContent={<Spinner />}
         loadingState={loadingState}
       >
