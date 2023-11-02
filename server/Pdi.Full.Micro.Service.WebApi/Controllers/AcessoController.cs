@@ -8,7 +8,6 @@ using Pdi.Full.Micro.Service.Services.Abstractions;
 namespace Pdi.Full.Micro.Service.WebApi.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
     [ApiController]
     public class AcessoController : ControllerBase
     {
@@ -23,7 +22,6 @@ namespace Pdi.Full.Micro.Service.WebApi.Controllers
         
         [HttpPost]
         [Route("login")]
-        [AllowAnonymous]
         public async Task<ActionResult<dynamic>> Authenticate([FromBody]Usuario login, CancellationToken cancellationToken)
         {
             var usuario = await _usuarioService.ObterAsync(login.NomeDeUsuario, cancellationToken);
@@ -45,7 +43,6 @@ namespace Pdi.Full.Micro.Service.WebApi.Controllers
             return Ok(usuarios);
         }
 
-        [Authorize]
         [HttpGet("{nomeDeUsuario}", Name = "Get")]
         public async Task<IActionResult> Get(string nomeDeUsuario,CancellationToken cancellationToken)
         {

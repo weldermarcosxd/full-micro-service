@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Pdi.Full.Micro.Service.WebApi.Extensions;
 
 namespace Pdi.Full.Micro.Service.WebApi
 {
@@ -7,7 +8,11 @@ namespace Pdi.Full.Micro.Service.WebApi
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+
+            host.AtualizarBancoDeDados();
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

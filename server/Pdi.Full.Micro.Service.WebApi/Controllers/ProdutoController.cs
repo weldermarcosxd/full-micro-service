@@ -11,7 +11,6 @@ namespace Pdi.Full.Micro.Service.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class ProdutoController : ControllerBase
     {
         private readonly IProdutoService _produtoService;

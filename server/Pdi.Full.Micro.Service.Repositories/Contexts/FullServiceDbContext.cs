@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Pdi.Full.Micro.Service.Entities.Models;
+using Pdi.Full.Micro.Service.Repositories.Extensions;
 
 namespace Pdi.Full.Micro.Service.Repositories.Contexts
 {
@@ -22,6 +23,9 @@ namespace Pdi.Full.Micro.Service.Repositories.Contexts
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(FullServiceDbContext).Assembly);
+            
+            Console.WriteLine(Environment.GetEnvironmentVariable("enviroment"));
+            modelBuilder.Seed();
         }
 
         public DbSet<Produto> Produtos { get; set; }
