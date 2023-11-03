@@ -1,3 +1,4 @@
+using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -11,8 +12,8 @@ namespace Pdi.Full.Micro.Service.WebApi.Extensions
         {
             using var scope = host.Services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<FullServiceDbContext>();
+            db.Database.EnsureDeleted();
             db.Database.EnsureCreated();
-            db.Database.Migrate();
         }
     }
 }

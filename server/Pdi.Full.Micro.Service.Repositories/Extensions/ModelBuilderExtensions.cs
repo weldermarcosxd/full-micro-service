@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Pdi.Full.Micro.Service.Entities.Models;
 using Pdi.Full.Micro.Service.Repositories.Fakers;
@@ -9,11 +11,9 @@ namespace Pdi.Full.Micro.Service.Repositories.Extensions
     {
         internal static void Seed(this ModelBuilder modelBuilder)
         {
-            var produtosFake = ProdutoFaker.Faker().Generate(1_000);
-
-            Console.WriteLine($"---------------------------------------------------- {produtosFake[0].Id} =============================");
- 
-            modelBuilder.Entity<Produto>().HasData(produtosFake);
+            Console.WriteLine($"---------------------------------------------------- Seeding... ----------------------------------------------------");
+            Console.WriteLine($"---------------------------------------------------- Inserindo ----------------------------------------------------");
+            modelBuilder.Entity<Produto>().HasData(ProdutoFaker.Faker().Generate(1_000_000));
         }
     }
 }

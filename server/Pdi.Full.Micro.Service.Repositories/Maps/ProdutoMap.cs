@@ -10,6 +10,8 @@ namespace Pdi.Full.Micro.Service.Repositories.Maps
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).IsRequired().ValueGeneratedOnAdd();
+
+            builder.HasKey(x => x.Sequencial);
             builder.Property(x => x.Sequencial).ValueGeneratedOnAdd();
 
             builder.Property(x => x.Nome).IsUnicode(false).HasMaxLength(100);

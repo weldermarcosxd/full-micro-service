@@ -9,14 +9,14 @@ export default function TabelaDePersonagens() {
   const [pageNumber, setPage] = useState(1);
 
   const rowsPerPage = 15;
-  const {data, isLoading} = useSWR(`https://api.punkapi.com/v2/beers?per_page=${rowsPerPage}&page=${pageNumber}`, fetcher, {
+  const {data, isLoading} = useSWR(`https://localhost:5001/api/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}`, fetcher, {
     keepPreviousData: true,
   });
 
 
   const pages = useMemo(() => {
-    return data?.results?.length ? Math.ceil(data.count / rowsPerPage) : 0;
-  }, [data?.count, rowsPerPage]);
+    return data?.results?.length ? Math.ceil(data?.count / rowsPerPage) : 0;
+  }, [data?.results, data?.count, rowsPerPage]);
 
   const loadingState = isLoading || data?.results.length === 0 ? "loading" : "idle";
 

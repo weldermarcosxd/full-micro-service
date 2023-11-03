@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -17,8 +17,9 @@ namespace Pdi.Full.Micro.Service.Repositories
         {
             _context = context;
         }
-        
-        public async Task<IEnumerable<Produto>> Obter(CancellationToken cancellationToken) => await _context.Produtos.ToListAsync(cancellationToken);
+
+        public IQueryable<Produto> ObterQueryable() 
+        => _context.Produtos.OrderBy(x => x.Sequencial).AsNoTracking().AsQueryable();
 
         public async Task<Produto> Obter(Guid id,CancellationToken cancellationToken) => await _context.Produtos.FindAsync(new object[]{ id }, cancellationToken);
 

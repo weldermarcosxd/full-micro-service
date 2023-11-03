@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Pdi.Full.Micro.Service.Entities.Dtos;
 using Pdi.Full.Micro.Service.Entities.Models;
 using Pdi.Full.Micro.Service.Messages;
 using Pdi.Full.Micro.Service.Repositories.Abstractions;
@@ -19,11 +21,21 @@ namespace Pdi.Full.Micro.Service.Services.Produtos
             _produtoRepository = produtoRepository;
         }
 
-        public async Task<IEnumerable<Produto>> ObterAsync(CancellationToken cancellationToken)
+        public async Task<RespostaPaginada<IEnumerable<Produto>>> ObterAsync(FiltroDePaginacao filtro, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
+
+            var query = _produtoRepository.ObterQueryable();
+
+            var totalDeRegistros = await query.CountAsync(cancellationToken);
+            var registroParaPular = (filtro.NumeroDaPagina - 1) * filtro.TamanhoDaPagina;
+
+            var paginaDeRegistros = await query
+                .Skip(registroParaPular)
+                .Take(filtro.TamanhoDaPagina)
+                .ToListAsync(cancellationToken);
             
-            return await _produtoRepository.Obter(cancellationToken);
+            return new RespostaPaginada<IEnumerable<Produto>>(paginaDeRegistros, filtro, totalDeRegistros);
         }
 
         public async Task<Produto> ObterAsync(Guid produtoId, CancellationToken cancellationToken)
@@ -39,8 +51,8 @@ namespace Pdi.Full.Micro.Service.Services.Produtos
 
             if (produto.Sequencial == decimal.Zero)
             {
-                var produtos = await _produtoRepository.Obter(cancellationToken);
-                produto.Sequencial = produtos.Max(x => x.Sequencial) + 1;
+                var produtos = _produtoRepository.ObterQueryable();
+                produto.Sequencial = await produtos.MaxAsync(x => x.Sequencial, cancellationToken) + 1;
             }
             
             await _produtoRepository.Adicionar(produto, cancellationToken);

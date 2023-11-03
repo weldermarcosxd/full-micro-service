@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Pdi.Full.Micro.Service.Entities.Dtos;
 using Pdi.Full.Micro.Service.Entities.Models;
 using Pdi.Full.Micro.Service.Services.Abstractions;
 
@@ -21,9 +22,10 @@ namespace Pdi.Full.Micro.Service.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Produto>>> GetProdutos(CancellationToken cancellationToken)
+        public async Task<ActionResult<RespostaPaginada<Produto>>> GetProdutos([FromQuery] FiltroDePaginacao filtro, CancellationToken cancellationToken)
         {
-            var produtos = await _produtoService.ObterAsync(cancellationToken);
+            var filtroLimitado = new FiltroDePaginacao(filtro.NumeroDaPagina, filtro.TamanhoDaPagina);
+            var produtos = await _produtoService.ObterAsync(filtroLimitado, cancellationToken);
             return Ok(produtos);
         }
 
