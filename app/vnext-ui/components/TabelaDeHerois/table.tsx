@@ -1,24 +1,25 @@
 import { useState, useMemo }  from "react";
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination, Spinner, getKeyValue} from "@nextui-org/react";
 import useSWR from "swr";
-import { Cerveja } from "./types/cervejas";
+import { IResposta } from "./types/response";
+import "./styles.css"
 
 const fetcher = (url : string) => fetch(url).then((res) => res.json());
 
 export default function TabelaDePersonagens() {
   const [pageNumber, setPage] = useState(1);
 
-  const rowsPerPage = 15;
-  const {data, isLoading} = useSWR(`https://localhost:5001/api/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}`, fetcher, {
-    keepPreviousData: true,
+  const rowsPerPage = 8;
+  const { data, error, isLoading } = useSWR<IResposta, Error>(`https://restless-cherry-2036.fly.dev/api/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}`, fetcher, {
+    keepPreviousData: false,
   });
 
 
   const pages = useMemo(() => {
-    return data?.results?.length ? Math.ceil(data?.count / rowsPerPage) : 0;
-  }, [data?.results, data?.count, rowsPerPage]);
+    return data?.totalDeRegistros ? Math.ceil(data?.totalDeRegistros / rowsPerPage) : 0;
+  }, [data?.totalDeRegistros, rowsPerPage]);
 
-  const loadingState = isLoading || data?.results.length === 0 ? "loading" : "idle";
+  const loadingState = isLoading || data?.totalDeRegistros === 0 ? "loading" : "idle";
 
   return (
     <Table
@@ -42,20 +43,20 @@ export default function TabelaDePersonagens() {
       }
     >
       <TableHeader className="text-center">
-        <TableColumn align="center" key="id">#</TableColumn>
-        <TableColumn align="center" key="name">Name</TableColumn>
-        <TableColumn align="center" key="image_url">Url</TableColumn>
-        <TableColumn align="center" key="first_brewed">Mass</TableColumn>
-        <TableColumn key="brewers_tips">Birth year</TableColumn>
+        <TableColumn key="sequencial">#</TableColumn>
+        <TableColumn key="nome">Nome</TableColumn>
+        <TableColumn key="descricao" width={"30%"}>Descrição</TableColumn>
+        <TableColumn key="preco">Preço Unitário</TableColumn>
+        <TableColumn key="quantidadeEmEstoque">Estoque</TableColumn>
       </TableHeader>
       <TableBody
-        items={(data?.results ?? []) as Cerveja[] } 
+        items={data?.data ?? [] } 
         loadingContent={<Spinner />}
         loadingState={loadingState}
       >
         {(item) => (
-          <TableRow key={item?.name}>
-            {(columnKey) => <TableCell align="center">{getKeyValue(item, columnKey)}</TableCell>}
+          <TableRow key={item?.id}>
+            {(columnKey) => <TableCell><div className="long-text-elipses">{getKeyValue(item, columnKey)}</div></TableCell>}
           </TableRow>
         )}
       </TableBody>

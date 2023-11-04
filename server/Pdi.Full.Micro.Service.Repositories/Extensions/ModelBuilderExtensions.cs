@@ -13,7 +13,7 @@ namespace Pdi.Full.Micro.Service.Repositories.Extensions
         {
             Console.WriteLine($"---------------------------------------------------- Seeding... ----------------------------------------------------");
             Console.WriteLine($"---------------------------------------------------- Inserindo ----------------------------------------------------");
-            modelBuilder.Entity<Produto>().HasData(ProdutoFaker.Faker().Generate(1_000_000));
+            modelBuilder.Entity<Produto>().HasData(ProdutoFaker.Faker().Generate(10_000));
         }
     }
 }
