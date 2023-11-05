@@ -8,13 +8,13 @@ export interface IResposta
   totalDeRegistros: number
   nextPage: any
   previousPage: any
-  data: Produto[]
+  data: IProduto[]
   sucesso: boolean
   erros: any
   mensagem: any
 }
 
-export class Produto
+export interface IProduto
 {
   id: string
   sequencial: number
@@ -22,24 +22,4 @@ export class Produto
   descricao: string
   preco: number
   quantidadeEmEstoque: number
-
-  get precoFormatado(): string
-  {
-    return this.preco.toLocaleString();
-  }
-
-  get quantidadeEmEstoqueFormatada(): string
-  {
-    return this.quantidadeEmEstoque.toLocaleString();
-  }
-
-  constructor(id: string, sequencial: number, nome: string, descricao: string, preco: number, quantidadeEmEstoque: number)
-  {
-    this.id = id;
-    this.sequencial = sequencial;
-    this.nome = nome;
-    this.descricao = descricao;
-    this.preco = preco;
-    this.quantidadeEmEstoque = quantidadeEmEstoque;
-  }
 }

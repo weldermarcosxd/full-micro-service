@@ -1,8 +1,14 @@
 "use client"
 
+import dynamic from 'next/dynamic'
 import { Divider } from "@nextui-org/divider";
 import React from "react";
-import TabelaDePersonagens from "@/components/TabelaDeHerois/table";
+
+const TabelaDePersonagens = dynamic(
+    () => import('@/components/TabelaDeHerois/table'),
+    { ssr: false }
+  )
+
 
 export default function ProdutosPage()
 {
