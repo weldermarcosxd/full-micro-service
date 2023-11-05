@@ -10,7 +10,7 @@ namespace Pdi.Full.Micro.Service.Services.Abstractions
 {
     public interface IProdutoService
     {
-        Task<RespostaPaginada<IEnumerable<Produto>>> ObterAsync(FiltroDePaginacao filtro, CancellationToken cancellationToken);
+        Task<RespostaPaginada<IEnumerable<ProdutoDto>>> ObterAsync(FiltroDePaginacao filtro, CancellationToken cancellationToken);
         Task<Produto> ObterAsync(Guid produtoId, CancellationToken cancellationToken);
         Task<Produto> AdicionarAsync(Produto produto, CancellationToken cancellationToken);
         Task<Produto> AtualizarAsync(Guid id, Produto produto, CancellationToken cancellationToken);

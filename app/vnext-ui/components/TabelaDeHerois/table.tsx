@@ -76,7 +76,7 @@ export default function TabelaDePersonagens()
           topContentPlacement="outside"
           topContent={
             pages > 0 ? (
-              <div className="flex w-full justify-center">
+              <div className="flex w-full">
                 <Pagination
                   isCompact
                   showControls

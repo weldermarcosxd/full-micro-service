@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Pdi.Full.Micro.Service.Entities.Dtos;
+using Pdi.Full.Micro.Service.Entities.Mapers;
 using Pdi.Full.Micro.Service.Entities.Models;
 using Pdi.Full.Micro.Service.Messages;
 using Pdi.Full.Micro.Service.Repositories.Abstractions;
@@ -21,7 +22,7 @@ namespace Pdi.Full.Micro.Service.Services.Produtos
             _produtoRepository = produtoRepository;
         }
 
-        public async Task<RespostaPaginada<IEnumerable<Produto>>> ObterAsync(FiltroDePaginacao filtro, CancellationToken cancellationToken)
+        public async Task<RespostaPaginada<IEnumerable<ProdutoDto>>> ObterAsync(FiltroDePaginacao filtro, CancellationToken cancellationToken)
         {
             cancellationToken.ThrowIfCancellationRequested();
 
@@ -33,9 +34,10 @@ namespace Pdi.Full.Micro.Service.Services.Produtos
             var paginaDeRegistros = await query
                 .Skip(registroParaPular)
                 .Take(filtro.TamanhoDaPagina)
+                .ProjetarParaDto()
                 .ToListAsync(cancellationToken);
             
-            return new RespostaPaginada<IEnumerable<Produto>>(paginaDeRegistros, filtro, totalDeRegistros);
+            return new RespostaPaginada<IEnumerable<ProdutoDto>>(paginaDeRegistros, filtro, totalDeRegistros);
         }
 
         public async Task<Produto> ObterAsync(Guid produtoId, CancellationToken cancellationToken)

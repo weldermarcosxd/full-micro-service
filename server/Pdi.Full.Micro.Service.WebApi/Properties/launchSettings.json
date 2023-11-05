@@ -20,8 +20,8 @@
     "Pdi.Full.Micro.Service.WebApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "https://0.0.0.0:8080/swagger/index.html",
-      "applicationUrl": "https://0.0.0.0:8080;http://localhost:0.0.0.0:8080",
+      "launchUrl": "https://0.0.0.0:8081/swagger/index.html",
+      "applicationUrl": "https://0.0.0.0:8081;http://localhost:0.0.0.0:8081",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
