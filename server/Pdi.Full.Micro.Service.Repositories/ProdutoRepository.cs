@@ -21,7 +21,7 @@ namespace Pdi.Full.Micro.Service.Repositories
         public IQueryable<Produto> ObterQueryable() 
         => _context.Produtos.OrderBy(x => x.Sequencial).AsNoTracking().AsQueryable();
 
-        public async Task<Produto> Obter(Guid id,CancellationToken cancellationToken) => await _context.Produtos.FindAsync(new object[]{ id }, cancellationToken);
+        public async Task<Produto> Obter(Guid id, CancellationToken cancellationToken) => await _context.Produtos.FindAsync([id], cancellationToken);
 
         public async Task Atualizar(Guid id, Produto produto, CancellationToken cancellationToken)
         {

@@ -170,18 +170,36 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
 
 function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps): React.ReactNode
 {
+  function onEditar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): void
+  {
+    event.stopPropagation();
+    console.log(`quer editar o id ${id}`)
+  }
+
+  function onDeletar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): void
+  {
+    event.stopPropagation();
+    console.log(`quer deletar o id ${id}`)
+  }
+
+  function onVisualizar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): void
+  {
+    event.stopPropagation();
+    console.log(`quer visualizar o id ${id}`)
+  }
+
   return (
-    <div className="relative flex justify-end items-center gap-2" aria-label="botoes-de-edicao">
+    <div className="relative flex justify-end items-center gap-2">
       <Dropdown>
         <DropdownTrigger>
           <Button isIconOnly size="sm" variant="light">
             <PontosVerticais className="text-default-300" />
           </Button>
         </DropdownTrigger>
-        <DropdownMenu color={propriedadesDaTabela.color}>
-          <DropdownItem aria-labelledby="{id}" aria-label="Visualizar">Visualizar</DropdownItem>
-          <DropdownItem aria-labelledby="{id}" aria-label="Editar">Editar</DropdownItem>
-          <DropdownItem aria-labelledby="{id}" aria-label="Excluir">Excluir</DropdownItem>
+        <DropdownMenu aria-label="menu-de-edicao" color={propriedadesDaTabela.color}>
+          <DropdownItem onClick={(event) => onVisualizar(event, id)}>Visualizar</DropdownItem>
+          <DropdownItem onClick={(event) => onEditar(event, id)}>Editar</DropdownItem>
+          <DropdownItem onClick={(event) => onDeletar(event, id)}>Excluir</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     </div>
