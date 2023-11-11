@@ -1,15 +1,16 @@
 import React, { useState, useMemo, useCallback } from "react";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination, Spinner, getKeyValue } from "@nextui-org/react";
-import { Input, Button, Selection } from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination, Spinner, getKeyValue, Dropdown, Button, DropdownTrigger, DropdownMenu, DropdownItem, TableVariantProps } from "@nextui-org/react";
+import { Input, Selection } from "@nextui-org/react";
 import useSWR from "swr";
 
 import { IResposta, IProduto } from "./types/response";
 import "./styles.css"
-import { SearchIcon } from "./icones/SearchIcon";
+import { IconeDePesquisa } from "./icones/IconeDePesquisa";
+import { PontosVerticais } from "./icones/PontosVerticais";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-export default function TabelaDePersonagens()
+export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantProps)
 {
   const [pageNumber, setPage] = useState(1);
   const [filterValue, setFilterValue] = useState("");
@@ -22,15 +23,17 @@ export default function TabelaDePersonagens()
 
   function formatarMoeda(value: number)
   {
-    return new Intl.NumberFormat('pt-BR', {
+    const valor = new Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
     }).format(value);
+    return <div className="text-right">{valor}</div>
   }
 
   function formatarQuantidade(value: number)
   {
-    return new Intl.NumberFormat('pt-BR').format(value);
+    const valor = new Intl.NumberFormat('pt-BR').format(value);
+    return <div className="text-right">{valor}</div>
   }
 
   const columnMap: Record<string, (item: IProduto) => React.ReactNode> = {
@@ -40,6 +43,7 @@ export default function TabelaDePersonagens()
     descricao: (item) => item.descricao,
     preco: (item) => formatarMoeda(item.preco),
     quantidadeEmEstoque: (item) => formatarQuantidade(item.quantidadeEmEstoque),
+    acoes: (item) => adicionarAcoes(item.id, propriedadesDaTabela)
   };
 
   const onSearchChange = useCallback((value?: string) =>
@@ -53,18 +57,6 @@ export default function TabelaDePersonagens()
       setFilterValue("");
     }
   }, []);
-
-  const onNextPage = React.useCallback(() => {
-    if (pageNumber < pages) {
-      setPage(pageNumber + 1);
-    }
-  }, [pageNumber, data?.data]);
-  
-  const onPreviousPage = React.useCallback(() => {
-    if (pageNumber > 1) {
-      setPage(pageNumber - 1);
-    }
-  }, [pageNumber]);
 
   const onRowsPerPageChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) =>
   {
@@ -85,8 +77,8 @@ export default function TabelaDePersonagens()
       <div className="py-2 px-2 flex justify-end items-center">
         <span className="text-small text-default-400">
           {selectedKeys === "all"
-            ? "All items selected"
-            : `${selectedKeys.size} of ${data?.totalDeRegistros} selected`}
+            ? "Todos os itens foram selecionados"
+            : `${selectedKeys.size} of ${data?.totalDeRegistros ?? 0} selecionados`}
         </span>
       </div>
     );
@@ -113,7 +105,7 @@ export default function TabelaDePersonagens()
           onSelectionChange={setSelectedKeys}
           selectionMode="multiple"
           title="Produtos"
-          color="success"
+          color={propriedadesDaTabela.color}
           aria-label="Example table with client async pagination"
           bottomContent={bottomContent}
           topContentPlacement="outside"
@@ -122,9 +114,10 @@ export default function TabelaDePersonagens()
               <div className="flex justify-between items-center">
                 <Input isClearable
                   className="gap-4 w-1/3"
-                  placeholder="Pesquisar..." size="sm" startContent={<SearchIcon />}
+                  placeholder="Pesquisar..." size="sm" startContent={<IconeDePesquisa />}
                   value={filterValue}
                   variant="bordered"
+                  color={propriedadesDaTabela.color}
                   onClear={() => setFilterValue("")}
                   onValueChange={onSearchChange}
                 />
@@ -133,7 +126,7 @@ export default function TabelaDePersonagens()
                     isCompact
                     showControls
                     showShadow
-                    color="primary"
+                    color={propriedadesDaTabela.color}
                     page={pageNumber}
                     total={pages}
                     onChange={(page) => setPage(page)}
@@ -147,8 +140,9 @@ export default function TabelaDePersonagens()
             <TableColumn key="sequencial">#</TableColumn>
             <TableColumn key="nome">Nome</TableColumn>
             <TableColumn key="descricao" className="w-1/3">Descrição</TableColumn>
-            <TableColumn key="preco" align="end">Preço Unitário</TableColumn>
-            <TableColumn key="quantidadeEmEstoque">Estoque</TableColumn>
+            <TableColumn className="text-right" key="preco">Preço Unitário</TableColumn>
+            <TableColumn className="text-right" key="quantidadeEmEstoque">Estoque</TableColumn>
+            <TableColumn key="acoes">Ações</TableColumn>
           </TableHeader>
           <TableBody
             items={(data?.data ?? []) as IProduto[]}
@@ -173,3 +167,24 @@ export default function TabelaDePersonagens()
     </>
   );
 }
+
+function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps): React.ReactNode
+{
+  return (
+    <div className="relative flex justify-end items-center gap-2" aria-label="botoes-de-edicao">
+      <Dropdown>
+        <DropdownTrigger>
+          <Button isIconOnly size="sm" variant="light">
+            <PontosVerticais className="text-default-300" />
+          </Button>
+        </DropdownTrigger>
+        <DropdownMenu color={propriedadesDaTabela.color}>
+          <DropdownItem aria-labelledby="{id}" aria-label="Visualizar">Visualizar</DropdownItem>
+          <DropdownItem aria-labelledby="{id}" aria-label="Editar">Editar</DropdownItem>
+          <DropdownItem aria-labelledby="{id}" aria-label="Excluir">Excluir</DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    </div>
+  )
+}
+
