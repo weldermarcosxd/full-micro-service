@@ -21,7 +21,7 @@ namespace Pdi.Full.Micro.Service.Repositories
         public IQueryable<Produto> ObterQueryable() 
         => _context.Produtos.OrderBy(x => x.Sequencial).AsNoTracking().AsQueryable();
 
-        public async Task<Produto> Obter(Guid id, CancellationToken cancellationToken) => await _context.Produtos.FindAsync([id], cancellationToken);
+        public async Task<Produto> Obter(Guid id, CancellationToken cancellationToken) => await _context.Produtos.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
 
         public async Task Atualizar(Guid id, Produto produto, CancellationToken cancellationToken)
         {
@@ -50,7 +50,7 @@ namespace Pdi.Full.Micro.Service.Repositories
 
         public async Task<bool> Remover(Guid id, CancellationToken cancellationToken)
         {
-            var produto = await _context.Produtos.FindAsync(id, cancellationToken);
+            var produto = await _context.Produtos.FirstOrDefaultAsync(x => x.Id == id,y cancellationToken);
             _context.Produtos.Remove(produto);
             await _context.SaveChangesAsync(cancellationToken);
 
