@@ -50,7 +50,7 @@ namespace Pdi.Full.Micro.Service.Repositories
 
         public async Task<bool> Remover(Guid id, CancellationToken cancellationToken)
         {
-            var produto = await _context.Produtos.FirstOrDefaultAsync(x => x.Id == id,y cancellationToken);
+            var produto = await _context.Produtos.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
             _context.Produtos.Remove(produto);
             await _context.SaveChangesAsync(cancellationToken);
 

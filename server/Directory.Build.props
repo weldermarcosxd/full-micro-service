@@ -1,6 +1,5 @@
 <Project>
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <DotnetVersion>netcoreapp6.0</DotnetVersion>
   </PropertyGroup>
 </Project>
