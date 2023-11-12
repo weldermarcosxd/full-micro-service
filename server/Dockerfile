@@ -7,6 +7,7 @@ WORKDIR /src
 
 # copy everything
 COPY . ./
+COPY Directory.Build.props ./
 # restore as distinct layers
 RUN dotnet restore
 # build and publish a release
