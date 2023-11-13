@@ -8,7 +8,7 @@ import "./styles.css"
 import { IconeDePesquisa } from "./icones/IconeDePesquisa";
 import { PontosVerticais } from "./icones/PontosVerticais";
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const fetcher = (url: string) : Promise<IResposta> => fetch(url).then((res) => res.json());
 
 export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantProps)
 {
@@ -17,7 +17,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set([]));
 
-  const { data, error, isLoading } = useSWR<IResposta, Error>(`https://restless-cherry-2036.fly.dev/api/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}`, fetcher, {
+  const { data: respostaDeProdutos, error, isLoading } = useSWR<IResposta, Error>(`https://restless-cherry-2036.fly.dev/api/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}`, fetcher, {
     keepPreviousData: false,
   });
 
@@ -67,10 +67,10 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
 
   const pages = useMemo(() =>
   {
-    return data?.totalDeRegistros ? Math.ceil(data?.totalDeRegistros / rowsPerPage) : 0;
-  }, [data?.totalDeRegistros, rowsPerPage]);
+    return respostaDeProdutos?.totalDeRegistros ? Math.ceil(respostaDeProdutos?.totalDeRegistros / rowsPerPage) : 0;
+  }, [respostaDeProdutos?.totalDeRegistros, rowsPerPage]);
 
-  const loadingState = isLoading || data?.totalDeRegistros === 0 ? "loading" : "idle";
+  const loadingState = isLoading || respostaDeProdutos?.totalDeRegistros === 0 ? "loading" : "idle";
 
   const bottomContent = useMemo(() => {
     return (
@@ -78,23 +78,23 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
         <span className="text-small text-default-400">
           {selectedKeys === "all"
             ? "Todos os itens foram selecionados"
-            : `${selectedKeys.size} of ${data?.totalDeRegistros ?? 0} selecionados`}
+            : `${selectedKeys.size} of ${respostaDeProdutos?.totalDeRegistros ?? 0} selecionados`}
         </span>
       </div>
     );
-  }, [selectedKeys, data?.totalDeRegistros, pageNumber, pages, filterValue]);
+  }, [selectedKeys, respostaDeProdutos?.totalDeRegistros, pageNumber, pages, filterValue]);
 
   return (
     <>
       <div className="flex flex-col relative gap-4">
         <div className="flex justify-between items-center">
-          <span className="text-default-400 text-small">Total {data?.totalDeRegistros} produtos</span>
+          <span className="text-default-400 text-small">Total {respostaDeProdutos?.totalDeRegistros} produtos</span>
           <label className="flex items-center text-default-400 text-small">
             Linhas por página:
             <select
               className="bg-transparent outline-none text-default-400 text-small"
               onChange={onRowsPerPageChange}
-            >
+                          >
               <option value="5">5</option>
               <option value="10">10</option>
               <option value="20">20</option>
@@ -145,7 +145,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
             <TableColumn key="acoes">Ações</TableColumn>
           </TableHeader>
           <TableBody
-            items={(data?.data ?? []) as IProduto[]}
+            items={(respostaDeProdutos?.data ?? []) as IProduto[]}
             loadingContent={<Spinner />}
             loadingState={loadingState}
           >
@@ -176,10 +176,10 @@ function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps): Re
     console.log(`quer editar o id ${id}`)
   }
 
-  function onDeletar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): void
+  async function onDeletar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): Promise<void>
   {
     event.stopPropagation();
-    console.log(`quer deletar o id ${id}`)
+    await fetch(`https://restless-cherry-2036.fly.dev/api/produto/${id}`, { method: "DELETE" });
   }
 
   function onVisualizar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): void
@@ -189,7 +189,7 @@ function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps): Re
   }
 
   return (
-    <div className="relative flex justify-end items-center gap-2">
+    <div className="relative flex items-center gap-2">
       <Dropdown>
         <DropdownTrigger>
           <Button isIconOnly size="sm" variant="light">
