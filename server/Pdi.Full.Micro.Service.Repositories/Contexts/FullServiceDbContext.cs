@@ -11,9 +11,8 @@ namespace Pdi.Full.Micro.Service.Repositories.Contexts
         
         public FullServiceDbContext()
         {
-            var pasta = Environment.SpecialFolder.LocalApplicationData;
-            var path = Environment.GetFolderPath(pasta);
-            _dbPath = System.IO.Path.Join(path, "full-service.db");
+            var pasta = Environment.CurrentDirectory;
+            _dbPath = System.IO.Path.Join(pasta, "full-service.db");
         }
         
         protected override void OnConfiguring(DbContextOptionsBuilder options)
@@ -23,9 +22,9 @@ namespace Pdi.Full.Micro.Service.Repositories.Contexts
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(FullServiceDbContext).Assembly);
-            
+
             Console.WriteLine("****************" + Environment.GetEnvironmentVariable("Enviroment"));
-            modelBuilder.Seed();
+            // modelBuilder.Seed();
         }
 
         public DbSet<Produto> Produtos { get; set; }

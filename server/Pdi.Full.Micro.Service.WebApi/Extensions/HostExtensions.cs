@@ -8,12 +8,11 @@ namespace Pdi.Full.Micro.Service.WebApi.Extensions
 {
     public static class HostExtensions
     {
-        public static void AtualizarBancoDeDados(this IHost host)
+        public static async void AtualizarBancoDeDados(this IHost host)
         {
             using var scope = host.Services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<FullServiceDbContext>();
-            db.Database.EnsureDeleted();
-            db.Database.EnsureCreated();
+            await db.Database.MigrateAsync();
         }
     }
 }
