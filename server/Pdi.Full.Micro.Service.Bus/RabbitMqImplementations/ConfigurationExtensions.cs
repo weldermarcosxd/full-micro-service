@@ -5,6 +5,6 @@ namespace Pdi.Full.Micro.Service.Bus.RabbitMqImplementations
     public static class ConfigurationExtensions
     {
         public static string ObterMessageBrokerInstance(this IConfiguration configuration)
-            => configuration.GetValue("MESSAGE_QUEUE_SERVER", string.Empty);         
+            => configuration.GetSection("MESSAGE_QUEUE_SERVER")?.Value ?? string.Empty;         
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Internal;
@@ -77,10 +78,10 @@ namespace Pdi.Full.Micro.Service.Services.Relatorios
                             // step 3
                             foreach (var item in vendas)
                             {
-                                table.Cell().Element(CellStyle).Text(vendas.IndexOf(item) + 1);
-                                table.Cell().Element(CellStyle).Text(item.Sequencial);
+                                table.Cell().Element(CellStyle).Text((vendas.ToList().IndexOf(item) + 1).ToString());
+                                table.Cell().Element(CellStyle).Text(item.Sequencial.ToString());
                                 table.Cell().Element(CellStyle).AlignRight().Text($"{item.Sequencial}$");
-                                table.Cell().Element(CellStyle).AlignRight().Text(item.DataDaVenda);
+                                table.Cell().Element(CellStyle).AlignRight().Text(item.DataDaVenda.ToString());
                                 table.Cell().Element(CellStyle).AlignRight().Text($"{item.DataDaVenda}$");
 
                                 static IContainer CellStyle(IContainer container)

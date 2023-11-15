@@ -1,5 +1,7 @@
 <Project>
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
+    <EntityFrameworkVersion>8.0.0</EntityFrameworkVersion>
+    <TargetFrameworkLibs>net8.0</TargetFrameworkLibs>
   </PropertyGroup>
 </Project>
