@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useCallback } from "react";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination, Spinner, getKeyValue, Dropdown, Button, DropdownTrigger, DropdownMenu, DropdownItem, TableVariantProps } from "@nextui-org/react";
 import { Input, Selection } from "@nextui-org/react";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 
 import { IResposta, IProduto } from "./types/response";
 import "./styles.css"
@@ -20,6 +20,10 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
   const { data: respostaDeProdutos, error, isLoading } = useSWR<IResposta, Error>(`https://restless-cherry-2036.fly.dev/api/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}`, fetcher, {
     keepPreviousData: false,
   });
+
+  const doRefresh = () => {
+    mutate(`https://restless-cherry-2036.fly.dev/api/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}`);
+  };
 
   function formatarMoeda(value: number)
   {
@@ -43,7 +47,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
     descricao: (item) => item.descricao,
     preco: (item) => formatarMoeda(item.preco),
     quantidadeEmEstoque: (item) => formatarQuantidade(item.quantidadeEmEstoque),
-    acoes: (item) => adicionarAcoes(item.id, propriedadesDaTabela)
+    acoes: (item) => adicionarAcoes(item.id, propriedadesDaTabela, doRefresh)
   };
 
   const onSearchChange = useCallback((value?: string) =>
@@ -82,7 +86,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
         </span>
       </div>
     );
-  }, [selectedKeys, respostaDeProdutos?.totalDeRegistros, pageNumber, pages, filterValue]);
+  }, [selectedKeys, respostaDeProdutos?.totalDeRegistros]);
 
   return (
     <>
@@ -168,7 +172,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
   );
 }
 
-function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps): React.ReactNode
+function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doRefresh : Function): React.ReactNode
 {
   function onEditar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): void
   {
@@ -178,8 +182,9 @@ function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps): Re
 
   async function onDeletar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): Promise<void>
   {
-    event.stopPropagation();
+    event.target
     await fetch(`https://restless-cherry-2036.fly.dev/api/produto/${id}`, { method: "DELETE" });
+    doRefresh();
   }
 
   function onVisualizar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): void
