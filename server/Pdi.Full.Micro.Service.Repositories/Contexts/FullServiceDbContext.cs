@@ -24,7 +24,7 @@ namespace Pdi.Full.Micro.Service.Repositories.Contexts
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(FullServiceDbContext).Assembly);
 
             Console.WriteLine("****************" + Environment.GetEnvironmentVariable("Enviroment"));
-            modelBuilder.Seed();
+            // modelBuilder.Seed();
         }
 
         public DbSet<Produto> Produtos { get; set; }
