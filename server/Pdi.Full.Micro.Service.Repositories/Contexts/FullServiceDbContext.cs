@@ -13,7 +13,7 @@ namespace Pdi.Full.Micro.Service.Repositories.Contexts
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(FullServiceDbContext).Assembly);
 
             Console.WriteLine("****************" + Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
-            modelBuilder.Seed();
+            // modelBuilder.Seed();
         }
 
         public DbSet<Produto> Produtos { get; set; }
