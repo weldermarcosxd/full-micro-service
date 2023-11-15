@@ -5,26 +5,15 @@ using Pdi.Full.Micro.Service.Repositories.Extensions;
 
 namespace Pdi.Full.Micro.Service.Repositories.Contexts
 {
-    public class FullServiceDbContext : DbContext
-    {
-        private readonly string _dbPath;
-        
-        public FullServiceDbContext()
-        {
-            var pasta = Environment.CurrentDirectory;
-            _dbPath = System.IO.Path.Join(pasta, "full-service.db");
-        }
-        
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite($"Data Source={_dbPath}", b => b.MigrationsAssembly("Pdi.Full.Micro.Service.WebApi"));
-
+    public abstract class FullServiceDbContext : DbContext
+    {        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(FullServiceDbContext).Assembly);
 
-            Console.WriteLine("****************" + Environment.GetEnvironmentVariable("Enviroment"));
-            // modelBuilder.Seed();
+            Console.WriteLine("****************" + Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+            modelBuilder.Seed();
         }
 
         public DbSet<Produto> Produtos { get; set; }

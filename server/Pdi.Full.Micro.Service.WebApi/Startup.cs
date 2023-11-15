@@ -30,7 +30,8 @@ namespace Pdi.Full.Micro.Service.WebApi
             services.AdicionarRepositorios();
             services.AdicionarServicos();
             services.AdicionarRabbitMq(Configuration);
-            services.AddDbContext<FullServiceDbContext>();
+
+            services.AdicionarDbContextPorProvider(Configuration);
 
             services.AddCors(options =>
             {
