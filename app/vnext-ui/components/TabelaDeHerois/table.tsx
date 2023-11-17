@@ -1,5 +1,6 @@
-import React, { useState, useMemo, useCallback } from "react";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination, Spinner, getKeyValue, Dropdown, Button, DropdownTrigger, DropdownMenu, DropdownItem, TableVariantProps } from "@nextui-org/react";
+import { useState, useMemo, useCallback } from "react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination, Spinner, getKeyValue, Dropdown, Button, DropdownTrigger, DropdownMenu, DropdownItem, TableVariantProps, UseDisclosureProps } from "@nextui-org/react";
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
 import { Input, Selection } from "@nextui-org/react";
 import useSWR, { mutate } from "swr";
 
@@ -16,6 +17,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
   const [filterValue, setFilterValue] = useState("");
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set([]));
+  const disclosureProps  = useDisclosure();
 
   const { data: respostaDeProdutos, error, isLoading } = useSWR<IResposta, Error>(`https://restless-cherry-2036.fly.dev/api/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}`, fetcher, {
     keepPreviousData: false,
@@ -47,7 +49,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
     descricao: (item) => item.descricao,
     preco: (item) => formatarMoeda(item.preco),
     quantidadeEmEstoque: (item) => formatarQuantidade(item.quantidadeEmEstoque),
-    acoes: (item) => adicionarAcoes(item.id, propriedadesDaTabela, doRefresh)
+    acoes: (item) => adicionarAcoes(item.id, propriedadesDaTabela, doRefresh, disclosureProps)
   };
 
   const onSearchChange = useCallback((value?: string) =>
@@ -168,11 +170,48 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
           </TableBody>
         </Table>
       </div>
+      <Modal isOpen={disclosureProps.isOpen} onOpenChange={disclosureProps.onOpenChange}>
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+              <ModalBody>
+                <p> 
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nullam pulvinar risus non risus hendrerit venenatis.
+                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  Nullam pulvinar risus non risus hendrerit venenatis.
+                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                </p>
+                <p>
+                  Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
+                  dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis. 
+                  Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. 
+                  Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur 
+                  proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
+                </p>
+              </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose }>
+                  Close
+                </Button>
+                <Button color="primary" onPress={disclosureProps.onClose}>
+                  Action
+                </Button>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+
     </>
   );
 }
 
-function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doRefresh : Function): React.ReactNode
+function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doRefresh : Function, disclosureProps : UseDisclosureProps): React.ReactNode
 {
   function onEditar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): void
   {
@@ -190,6 +229,7 @@ function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doR
   function onVisualizar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): void
   {
     event.stopPropagation();
+    disclosureProps.onOpen?.();
     console.log(`quer visualizar o id ${id}`)
   }
 
