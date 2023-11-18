@@ -5,3 +5,10 @@
    -webkit-line-clamp: 1;
    -webkit-box-orient: vertical;
 }
+
+button[data-focus-visible="true"].data-\[focus-visible\=true\]\:outline-focus
+{
+    outline-color: transparent;
+    opacity: 0.9;
+    transform: scale(1.01);
+}

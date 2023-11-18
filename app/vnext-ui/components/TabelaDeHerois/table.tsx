@@ -1,13 +1,13 @@
 import { useState, useMemo, useCallback } from "react";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination, Spinner, getKeyValue, Dropdown, Button, DropdownTrigger, DropdownMenu, DropdownItem, TableVariantProps, UseDisclosureProps } from "@nextui-org/react";
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
-import { Input, Selection } from "@nextui-org/react";
+import { Input, Selection, useDisclosure } from "@nextui-org/react";
 import useSWR, { mutate } from "swr";
 
 import { IResposta, IProduto } from "./types/response";
 import "./styles.css"
 import { IconeDePesquisa } from "./icones/IconeDePesquisa";
 import { PontosVerticais } from "./icones/PontosVerticais";
+import ModalDeProduto from "../ModalDeProduto";
 
 const fetcher = (url: string) : Promise<IResposta> => fetch(url).then((res) => res.json());
 
@@ -18,6 +18,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set([]));
   const disclosureProps  = useDisclosure();
+  const [produtoSelecionado, setProdutoSelecionado] = useState("");
 
   const { data: respostaDeProdutos, error, isLoading } = useSWR<IResposta, Error>(`https://restless-cherry-2036.fly.dev/api/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}`, fetcher, {
     keepPreviousData: false,
@@ -49,7 +50,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
     descricao: (item) => item.descricao,
     preco: (item) => formatarMoeda(item.preco),
     quantidadeEmEstoque: (item) => formatarQuantidade(item.quantidadeEmEstoque),
-    acoes: (item) => adicionarAcoes(item.id, propriedadesDaTabela, doRefresh, disclosureProps)
+    acoes: (item) => adicionarAcoes(item.id, propriedadesDaTabela, doRefresh, disclosureProps, setProdutoSelecionado)
   };
 
   const onSearchChange = useCallback((value?: string) =>
@@ -135,7 +136,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
                     color={propriedadesDaTabela.color}
                     page={pageNumber}
                     total={pages}
-                    onChange={(page) => setPage(page)}
+                    onChange={(page: number) => setPage(page)}
                   />
                 </div>
               </div>
@@ -155,10 +156,10 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
             loadingContent={<Spinner />}
             loadingState={loadingState}
           >
-            {(item) => (
+            {(item: IProduto) => (
               <TableRow key={item?.id}>
                 {
-                  (columnKey) =>
+                  (columnKey: string) =>
                     <TableCell>
                       <div className="long-text-elipses">
                         {columnMap[columnKey] ? columnMap[columnKey](item) : getKeyValue(item, columnKey)}
@@ -170,48 +171,12 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
           </TableBody>
         </Table>
       </div>
-      <Modal isOpen={disclosureProps.isOpen} onOpenChange={disclosureProps.onOpenChange}>
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
-              <ModalBody>
-                <p> 
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
-                  dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis. 
-                  Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. 
-                  Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur 
-                  proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
-                </p>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose }>
-                  Close
-                </Button>
-                <Button color="primary" onPress={disclosureProps.onClose}>
-                  Action
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-
+      <ModalDeProduto produtoId={produtoSelecionado} disclosudeProps={disclosureProps} cor={propriedadesDaTabela.color}></ModalDeProduto>
     </>
   );
 }
 
-function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doRefresh : Function, disclosureProps : UseDisclosureProps): React.ReactNode
+function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doRefresh : Function, disclosureProps : UseDisclosureProps, setProdutoSelecionado: Function): React.ReactNode
 {
   function onEditar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): void
   {
@@ -221,16 +186,14 @@ function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doR
 
   async function onDeletar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): Promise<void>
   {
-    event.target
     await fetch(`https://restless-cherry-2036.fly.dev/api/produto/${id}`, { method: "DELETE" });
     doRefresh();
   }
 
   function onVisualizar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): void
   {
-    event.stopPropagation();
     disclosureProps.onOpen?.();
-    console.log(`quer visualizar o id ${id}`)
+    setProdutoSelecionado(id);
   }
 
   return (
@@ -242,9 +205,9 @@ function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doR
           </Button>
         </DropdownTrigger>
         <DropdownMenu aria-label="menu-de-edicao" color={propriedadesDaTabela.color}>
-          <DropdownItem onClick={(event) => onVisualizar(event, id)}>Visualizar</DropdownItem>
-          <DropdownItem onClick={(event) => onEditar(event, id)}>Editar</DropdownItem>
-          <DropdownItem onClick={(event) => onDeletar(event, id)}>Excluir</DropdownItem>
+          <DropdownItem onClick={(event: React.MouseEvent<HTMLLIElement, MouseEvent>) => onVisualizar(event, id)}>Visualizar</DropdownItem>
+          <DropdownItem onClick={(event: React.MouseEvent<HTMLLIElement, MouseEvent>) => onEditar(event, id)}>Editar</DropdownItem>
+          <DropdownItem onClick={(event: React.MouseEvent<HTMLLIElement, MouseEvent>) => onDeletar(event, id)}>Excluir</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     </div>
