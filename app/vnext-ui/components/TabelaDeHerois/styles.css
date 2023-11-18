@@ -12,3 +12,11 @@ button[data-focus-visible="true"].data-\[focus-visible\=true\]\:outline-focus
     opacity: 0.9;
     transform: scale(1.01);
 }
+
+.container-do-botao-de-acoes {
+    justify-content: space-evenly;
+}
+
+[aria-selected="true"] svg.botao-de-acoes{
+    color: hsl(var(--nextui-secondary) / var(--nextui-secondary-opacity, var(--tw-text-opacity)));
+}

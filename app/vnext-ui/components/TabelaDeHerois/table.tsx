@@ -1,6 +1,7 @@
 import { useState, useMemo, useCallback } from "react";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination, Spinner, getKeyValue, Dropdown, Button, DropdownTrigger, DropdownMenu, DropdownItem, TableVariantProps, UseDisclosureProps } from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner, getKeyValue, Dropdown, Button, DropdownTrigger, DropdownMenu, DropdownItem, TableVariantProps, UseDisclosureProps } from "@nextui-org/react";
 import { Input, Selection, useDisclosure } from "@nextui-org/react";
+import { Pagination } from "@nextui-org/pagination";
 import useSWR, { mutate } from "swr";
 
 import { IResposta, IProduto } from "./types/response";
@@ -67,7 +68,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
 
   const onRowsPerPageChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) =>
   {
-    setRowsPerPage(Number(e.target.value) ?? 5);
+    setRowsPerPage(Number(e.target.value) ?? 10);
     setPage(1);
   }, []);
 
@@ -101,7 +102,8 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
             <select
               className="bg-transparent outline-none text-default-400 text-small"
               onChange={onRowsPerPageChange}
-                          >
+              defaultValue={10}
+            >
               <option value="5">5</option>
               <option value="10">10</option>
               <option value="20">20</option>
@@ -197,11 +199,11 @@ function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doR
   }
 
   return (
-    <div className="relative flex items-center gap-2">
+    <div className="relative flex container-do-botao-de-acoes">
       <Dropdown>
         <DropdownTrigger>
           <Button isIconOnly size="sm" variant="light">
-            <PontosVerticais className="text-default-300" />
+            <PontosVerticais className="botao-de-acoes"/>
           </Button>
         </DropdownTrigger>
         <DropdownMenu aria-label="menu-de-edicao" color={propriedadesDaTabela.color}>

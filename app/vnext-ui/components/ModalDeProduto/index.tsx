@@ -1,4 +1,4 @@
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import { ModalDeProdutoProps } from "./types/modalProps";
 import useSWR, { mutate } from "swr";
