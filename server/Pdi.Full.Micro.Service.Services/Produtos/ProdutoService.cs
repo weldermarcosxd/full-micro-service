@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -28,14 +29,20 @@ namespace Pdi.Full.Micro.Service.Services.Produtos
 
             var query = _produtoRepository.ObterQueryable();
 
-            var totalDeRegistros = await query.CountAsync(cancellationToken);
-            var registroParaPular = (filtro.NumeroDaPagina - 1) * filtro.TamanhoDaPagina;
+            var possuiFiltroTextual = !string.IsNullOrWhiteSpace(filtro.PesquisaTextual);
+            
+            if(possuiFiltroTextual)
+              query = query.Where(x=> x.Nome.ToLower().Contains(filtro.PesquisaTextual.ToLower()));
 
-            var paginaDeRegistros = await query
+            var totalDeRegistros = await query.CountAsync(cancellationToken);
+
+            var registroParaPular = (filtro.NumeroDaPagina - 1) * filtro.TamanhoDaPagina;          
+            
+            var paginaDeRegistros = query
                 .Skip(registroParaPular)
                 .Take(filtro.TamanhoDaPagina)
                 .ProjetarParaDto()
-                .ToListAsync(cancellationToken);
+                .ToList();
             
             return new RespostaPaginada<IEnumerable<ProdutoDto>>(paginaDeRegistros, filtro, totalDeRegistros);
         }

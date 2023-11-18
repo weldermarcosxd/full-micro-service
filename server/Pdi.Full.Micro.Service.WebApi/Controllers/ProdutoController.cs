@@ -22,7 +22,7 @@ namespace Pdi.Full.Micro.Service.WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<RespostaPaginada<ProdutoDto>>> GetProdutos([FromQuery] FiltroDePaginacao filtro, CancellationToken cancellationToken)
         {
-            var filtroLimitado = new FiltroDePaginacao(filtro.NumeroDaPagina, filtro.TamanhoDaPagina);
+            var filtroLimitado = new FiltroDePaginacao(filtro.NumeroDaPagina, filtro.TamanhoDaPagina, filtro.PesquisaTextual);
             var produtos = await _produtoService.ObterAsync(filtroLimitado, cancellationToken);
             return Ok(produtos);
         }

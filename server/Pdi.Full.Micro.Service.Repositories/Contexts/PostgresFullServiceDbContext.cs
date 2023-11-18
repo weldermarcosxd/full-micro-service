@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Pdi.Full.Micro.Service.Bus.RabbitMqImplementations;
 
@@ -13,6 +14,8 @@ namespace Pdi.Full.Micro.Service.Repositories.Contexts
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
+            options.LogTo(Console.WriteLine);
+            options.EnableSensitiveDataLogging();
             var stringDeConexao = _configuration.ObterStringDeConexaoPostgres();
             options.UseNpgsql(stringDeConexao, b => b.MigrationsAssembly("Pdi.Full.Micro.Service.WebApi"));
         }

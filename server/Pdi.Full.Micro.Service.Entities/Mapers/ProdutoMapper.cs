@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Pdi.Full.Micro.Service.Entities.Dtos;
 using Pdi.Full.Micro.Service.Entities.Models;
@@ -9,5 +10,6 @@ namespace Pdi.Full.Micro.Service.Entities.Mapers
     public static partial class ProdutoMapper
     {
         public static partial IQueryable<ProdutoDto> ProjetarParaDto(this IQueryable<Produto> q);
+        public static partial IEnumerable<ProdutoDto> ProjetarParaDto(this IEnumerable<Produto> q);
     }
 }
