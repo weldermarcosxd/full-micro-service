@@ -3,6 +3,7 @@ import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinne
 import { Input, Selection, useDisclosure } from "@nextui-org/react";
 import { Pagination } from "@nextui-org/pagination";
 import useSWR, { mutate } from "swr";
+import debounce from 'lodash.debounce'
 
 import { IResposta, IProduto } from "./types/response";
 import "./styles.css"
@@ -10,24 +11,24 @@ import { IconeDePesquisa } from "./icones/IconeDePesquisa";
 import { PontosVerticais } from "./icones/PontosVerticais";
 import ModalDeProduto from "../ModalDeProduto";
 
-const fetcher = (url: string) : Promise<IResposta> => fetch(url).then((res) => res.json());
+const fetcher = (url: string): Promise<IResposta> => fetch(url).then((res) => res.json());
 
 export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantProps)
 {
+  const baseUrl = "https://restless-cherry-2036.fly.dev/api";
   const [pageNumber, setPage] = useState(1);
   const [filterValue, setFilterValue] = useState("");
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set([]));
-  const disclosureProps  = useDisclosure();
+  const disclosureProps = useDisclosure();
   const [produtoSelecionado, setProdutoSelecionado] = useState("");
 
-  const { data: respostaDeProdutos, error, isLoading } = useSWR<IResposta, Error>(`https://restless-cherry-2036.fly.dev/api/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}`, fetcher, {
+  const { data: respostaDeProdutos, error, isLoading } = useSWR<IResposta, Error>(`${baseUrl}/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}&PesquisaTextual=${filterValue}`, fetcher, {
     keepPreviousData: false,
   });
 
-  const doRefresh = () => {
-    mutate(`https://restless-cherry-2036.fly.dev/api/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}`);
-  };
+  const doRefresh = useCallback(debounce(() =>
+    mutate(`${baseUrl}/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}&PesquisaTextual=${filterValue}`), 1000), []);
 
   function formatarMoeda(value: number)
   {
@@ -58,13 +59,14 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
   {
     if (value)
     {
-      setFilterValue(value);
-      setPage(1);
+        setFilterValue(value);
+        doRefresh();
+        setPage(1);
     } else
     {
       setFilterValue("");
     }
-  }, []);
+  }, [doRefresh]);
 
   const onRowsPerPageChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) =>
   {
@@ -78,9 +80,10 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
     return respostaDeProdutos?.totalDeRegistros ? Math.ceil(respostaDeProdutos?.totalDeRegistros / rowsPerPage) : 0;
   }, [respostaDeProdutos?.totalDeRegistros, rowsPerPage]);
 
-  const loadingState = isLoading || respostaDeProdutos?.totalDeRegistros === 0 ? "loading" : "idle";
+  const loadingState = isLoading ? "loading" : "idle";
 
-  const bottomContent = useMemo(() => {
+  const bottomContent = useMemo(() =>
+  {
     return (
       <div className="py-2 px-2 flex justify-end items-center">
         <span className="text-small text-default-400">
@@ -119,7 +122,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
           bottomContent={bottomContent}
           topContentPlacement="outside"
           topContent={
-            pages > 0 ? (
+            (
               <div className="flex justify-between items-center">
                 <Input isClearable
                   className="gap-4 w-1/3"
@@ -130,19 +133,21 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
                   onClear={() => setFilterValue("")}
                   onValueChange={onSearchChange}
                 />
-                <div className="gap-4">
-                  <Pagination
-                    isCompact
-                    showControls
-                    showShadow
-                    color={propriedadesDaTabela.color}
-                    page={pageNumber}
-                    total={pages}
-                    onChange={(page: number) => setPage(page)}
-                  />
-                </div>
+                {pages > 0 ? (
+                  <div className="gap-4">
+                    <Pagination
+                      isCompact
+                      showControls
+                      showShadow
+                      color={propriedadesDaTabela.color}
+                      page={pageNumber}
+                      total={pages}
+                      onChange={(page: number) => setPage(page)}
+                    />
+                  </div>
+                ) : null}
               </div>
-            ) : null
+            )
           }
         >
           <TableHeader>
@@ -178,7 +183,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
   );
 }
 
-function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doRefresh : Function, disclosureProps : UseDisclosureProps, setProdutoSelecionado: Function): React.ReactNode
+function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doRefresh: Function, disclosureProps: UseDisclosureProps, setProdutoSelecionado: Function): React.ReactNode
 {
   function onEditar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): void
   {
@@ -203,7 +208,7 @@ function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doR
       <Dropdown>
         <DropdownTrigger>
           <Button isIconOnly size="sm" variant="light">
-            <PontosVerticais className="botao-de-acoes"/>
+            <PontosVerticais className="botao-de-acoes" />
           </Button>
         </DropdownTrigger>
         <DropdownMenu aria-label="menu-de-edicao" color={propriedadesDaTabela.color}>
