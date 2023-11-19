@@ -9,8 +9,9 @@ const fetcher = (url: string) : Promise<IProduto> => fetch(url).then((res) => re
 
 export default function ModalDeProduto(props: ModalDeProdutoProps)
 {
-    const { data: produtoResposta, error, isLoading } = useSWR<IProduto, Error>(`https://restless-cherry-2036.fly.dev/api/produto/${props.produtoId}`, fetcher, {
-        keepPreviousData: false,
+    const{ data: produtoResposta, error, isLoading } = useSWR<IProduto, Error>(`https://restless-cherry-2036.fly.dev/api/produto/${props.produtoId}`, fetcher, {
+      keepPreviousData: false,
+      onSuccess: () => console.log("chamada a produtos")
     });
 
     return (

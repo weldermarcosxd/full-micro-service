@@ -3,7 +3,6 @@ import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinne
 import { Input, Selection, useDisclosure } from "@nextui-org/react";
 import { Pagination } from "@nextui-org/pagination";
 import useSWR, { mutate } from "swr";
-import debounce from 'lodash.debounce'
 
 import { IResposta, IProduto } from "./types/response";
 import "./styles.css"
@@ -18,17 +17,21 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
   const baseUrl = "https://restless-cherry-2036.fly.dev/api";
   const [pageNumber, setPage] = useState(1);
   const [filterValue, setFilterValue] = useState("");
+  const [parametrosDePesquisa, setParametrosDePesquisa] = useState("");
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set([]));
   const disclosureProps = useDisclosure();
   const [produtoSelecionado, setProdutoSelecionado] = useState("");
+  const [timer, setTimer] = useState<NodeJS.Timeout>();
 
-  const { data: respostaDeProdutos, error, isLoading } = useSWR<IResposta, Error>(`${baseUrl}/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}&PesquisaTextual=${filterValue}`, fetcher, {
-    keepPreviousData: false,
+  const { data: respostaDeProdutos, error, isLoading } = useSWR<IResposta, Error>(`${baseUrl}/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}&PesquisaTextual=${parametrosDePesquisa}`, fetcher, {
+    keepPreviousData: true
   });
 
-  const doRefresh = useCallback(debounce(() =>
-    mutate(`${baseUrl}/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}&PesquisaTextual=${filterValue}`), 1000), []);
+  const doRefresh = () => {
+    console.log("refresing");
+    mutate(`${baseUrl}/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}&PesquisaTextual=${parametrosDePesquisa}`);
+  };
 
   function formatarMoeda(value: number)
   {
@@ -55,18 +58,15 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
     acoes: (item) => adicionarAcoes(item.id, propriedadesDaTabela, doRefresh, disclosureProps, setProdutoSelecionado)
   };
 
-  const onSearchChange = useCallback((value?: string) =>
+  const onSearchChange = (value?: string) =>
   {
     if (value)
-    {
         setFilterValue(value);
-        doRefresh();
-        setPage(1);
-    } else
-    {
+    else
       setFilterValue("");
-    }
-  }, [doRefresh]);
+
+    aplicarFiltros(value ?? "");
+  };
 
   const onRowsPerPageChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) =>
   {
@@ -162,6 +162,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
             items={(respostaDeProdutos?.data ?? []) as IProduto[]}
             loadingContent={<Spinner />}
             loadingState={loadingState}
+            emptyContent={isLoading ? "" : "Sem registros para mostrar."}
           >
             {(item: IProduto) => (
               <TableRow key={item?.id}>
@@ -178,9 +179,25 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
           </TableBody>
         </Table>
       </div>
-      <ModalDeProduto produtoId={produtoSelecionado} disclosudeProps={disclosureProps} cor={propriedadesDaTabela.color}></ModalDeProduto>
+      {
+        produtoSelecionado !== "" ? (
+        <ModalDeProduto produtoId={produtoSelecionado} disclosudeProps={disclosureProps} cor={propriedadesDaTabela.color}></ModalDeProduto>
+      ) : null }
     </>
   );
+
+  function aplicarFiltros(pesquisa: string)
+  {
+    clearTimeout(timer);
+
+    const newTimer = setTimeout(() =>
+    {
+      setParametrosDePesquisa(pesquisa);
+      setPage(1);
+    }, 500);
+
+    setTimer(newTimer);
+  }
 }
 
 function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doRefresh: Function, disclosureProps: UseDisclosureProps, setProdutoSelecionado: Function): React.ReactNode
@@ -199,8 +216,8 @@ function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doR
 
   function onVisualizar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): void
   {
-    disclosureProps.onOpen?.();
     setProdutoSelecionado(id);
+    disclosureProps.onOpen?.();
   }
 
   return (
