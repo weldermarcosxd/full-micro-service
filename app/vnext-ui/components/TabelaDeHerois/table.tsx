@@ -9,6 +9,7 @@ import "./styles.css"
 import { IconeDePesquisa } from "./icones/IconeDePesquisa";
 import { PontosVerticais } from "./icones/PontosVerticais";
 import ModalDeProduto from "../ModalDeProduto";
+import ModalDeEdicaoProduto from "../ModalDeEdicaoDeProduto";
 
 const fetcher = (url: string): Promise<IResposta> => fetch(url).then((res) => res.json());
 
@@ -21,6 +22,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set([]));
   const disclosureProps = useDisclosure();
+  const disclosurePropsEdicao = useDisclosure();
   const [produtoSelecionado, setProdutoSelecionado] = useState("");
   const [timer, setTimer] = useState<NodeJS.Timeout>();
 
@@ -55,7 +57,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
     descricao: (item) => item.descricao,
     preco: (item) => formatarMoeda(item.preco),
     quantidadeEmEstoque: (item) => formatarQuantidade(item.quantidadeEmEstoque),
-    acoes: (item) => adicionarAcoes(item.id, propriedadesDaTabela, doRefresh, disclosureProps, setProdutoSelecionado)
+    acoes: (item) => adicionarAcoes(item.id, propriedadesDaTabela, doRefresh, disclosureProps, setProdutoSelecionado, disclosurePropsEdicao)
   };
 
   const onSearchChange = (value?: string) =>
@@ -181,7 +183,10 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
       </div>
       {
         produtoSelecionado !== "" ? (
-        <ModalDeProduto produtoId={produtoSelecionado} disclosudeProps={disclosureProps} cor={propriedadesDaTabela.color}></ModalDeProduto>
+        <>
+          <ModalDeProduto produtoId={produtoSelecionado} disclosudeProps={disclosureProps} cor={propriedadesDaTabela.color}></ModalDeProduto>
+          <ModalDeEdicaoProduto produtoId={produtoSelecionado} disclosudeProps={disclosurePropsEdicao} cor={propriedadesDaTabela.color}></ModalDeEdicaoProduto>
+        </>
       ) : null }
     </>
   );
@@ -200,12 +205,12 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
   }
 }
 
-function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doRefresh: Function, disclosureProps: UseDisclosureProps, setProdutoSelecionado: Function): React.ReactNode
+function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doRefresh: Function, disclosureProps: UseDisclosureProps, setProdutoSelecionado: Function, disclosurePropsEdicao: UseDisclosureProps): React.ReactNode
 {
   function onEditar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): void
   {
-    event.stopPropagation();
-    console.log(`quer editar o id ${id}`)
+    setProdutoSelecionado(id);
+    disclosurePropsEdicao.onOpen?.();
   }
 
   async function onDeletar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): Promise<void>
