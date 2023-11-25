@@ -1,6 +1,7 @@
 import { useState, useMemo, useCallback } from "react";
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinner, getKeyValue, Dropdown, Button, DropdownTrigger, DropdownMenu, DropdownItem, TableVariantProps, UseDisclosureProps } from "@nextui-org/react";
 import { Input, Selection, useDisclosure } from "@nextui-org/react";
+import { Select, SelectItem } from "@nextui-org/react";
 import { Pagination } from "@nextui-org/pagination";
 import useSWR, { mutate } from "swr";
 
@@ -25,12 +26,14 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
   const disclosurePropsEdicao = useDisclosure();
   const [produtoSelecionado, setProdutoSelecionado] = useState("");
   const [timer, setTimer] = useState<NodeJS.Timeout>();
+  const opcoesDePaginas: number[] = [5, 10, 20]
 
   const { data: respostaDeProdutos, error, isLoading } = useSWR<IResposta, Error>(`${baseUrl}/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}&PesquisaTextual=${parametrosDePesquisa}`, fetcher, {
     keepPreviousData: true
   });
 
-  const doRefresh = () => {
+  const doRefresh = () =>
+  {
     console.log("refresing");
     mutate(`${baseUrl}/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}&PesquisaTextual=${parametrosDePesquisa}`);
   };
@@ -63,7 +66,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
   const onSearchChange = (value?: string) =>
   {
     if (value)
-        setFilterValue(value);
+      setFilterValue(value);
     else
       setFilterValue("");
 
@@ -102,18 +105,20 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
       <div className="flex flex-col relative gap-4">
         <div className="flex justify-between items-center">
           <span className="text-default-400 text-small">Total {respostaDeProdutos?.totalDeRegistros} produtos</span>
-          <label className="flex items-center text-default-400 text-small">
-            Linhas por página:
-            <select
-              className="bg-transparent outline-none text-default-400 text-small"
-              onChange={onRowsPerPageChange}
-              defaultValue={10}
-            >
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="20">20</option>
-            </select>
-          </label>
+          <Select
+            label="Linhas por página:"
+            placeholder="10"
+            className="w-1/3"
+            onChange={onRowsPerPageChange}
+            defaultValue={10}
+            size="sm"
+          >
+            {opcoesDePaginas.map((opcao) => (
+              <SelectItem key={opcao} value={opcao}>
+                {opcao.toString()}
+              </SelectItem>
+            ))}
+          </Select>
         </div>
         <Table
           onSelectionChange={setSelectedKeys}
@@ -183,11 +188,11 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
       </div>
       {
         produtoSelecionado !== "" ? (
-        <>
-          <ModalDeProduto produtoId={produtoSelecionado} disclosudeProps={disclosureProps} cor={propriedadesDaTabela.color}></ModalDeProduto>
-          <ModalDeEdicaoProduto produtoId={produtoSelecionado} disclosudeProps={disclosurePropsEdicao} cor={propriedadesDaTabela.color}></ModalDeEdicaoProduto>
-        </>
-      ) : null }
+          <>
+            <ModalDeProduto produtoId={produtoSelecionado} disclosudeProps={disclosureProps} cor={propriedadesDaTabela.color}></ModalDeProduto>
+            <ModalDeEdicaoProduto produtoId={produtoSelecionado} disclosudeProps={disclosurePropsEdicao} cor={propriedadesDaTabela.color}></ModalDeEdicaoProduto>
+          </>
+        ) : null}
     </>
   );
 
