@@ -1,51 +1,111 @@
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from "@nextui-org/react";
-import { Button } from "@nextui-org/react";
-import { ModalDeProdutoProps } from "./types/modalProps";
-import useSWR, { mutate } from "swr";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, Checkbox, Input, Link } from "@nextui-org/react";
+import useSWR from "swr";
 import { IProduto } from "./types/produtos";
-import { ExtensoesNumericas } from "@/utils/extensoes-numericas";
+import { ModalDeProdutoProps } from "./types/modalProps";
+import { obterChaveDoProdutoPorId, obterPorIdAsync, editarAsync } from "@/api/produtos";
+import { ChangeEvent } from "react";
 
-const fetcher = (url: string) : Promise<IProduto> => fetch(url).then((res) => res.json());
 
-export default function ModalDeProduto(props: ModalDeProdutoProps)
+export default function ModalDeEdicaoProduto(props: ModalDeProdutoProps)
 {
-    const{ data: produtoResposta, error, isLoading } = useSWR<IProduto, Error>(`https://restless-cherry-2036.fly.dev/api/produto/${props.produtoId}`, fetcher, {
-      keepPreviousData: false,
-      onSuccess: () => console.log("chamada a produtos")
-    });
+  const { data: produtoResposta, error, isLoading } = useSWR<IProduto, Error>(obterChaveDoProdutoPorId(props.produtoId), obterPorIdAsync, {
+    keepPreviousData: true,
+  });
 
-    return (
-        <Modal isOpen={props.disclosudeProps.isOpen} onOpenChange={props.disclosudeProps.onOpenChange} backdrop="blur">
-        <ModalContent>
-          {(onClose: Function) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">{produtoResposta?.nome}</ModalHeader>
-              <ModalBody>
-                <p> 
-                    {isLoading ? "Carregando..." : "Id: " + produtoResposta?.id}
-                </p>
-                <p> 
-                    {isLoading ? "Carregando..." : "Sequencial: " + produtoResposta?.sequencial}
-                </p>
-                <p> 
-                    {isLoading ? "Carregando..." : "Descrição: " + produtoResposta?.descricao}
-                </p>
-                <p> 
-                    {isLoading ? "Carregando..." : "Preço: " + ExtensoesNumericas.formatarValorMonetario(produtoResposta!.preco)}
-                </p>
-                <p> 
-                    {isLoading ? "Carregando..." : "Quantidade Em Estoque: " + ExtensoesNumericas.formatarQuantidade(produtoResposta!.quantidadeEmEstoque)}
-                </p>
+  function atualizarNome(event: ChangeEvent<HTMLInputElement>): void
+  {
+    produtoResposta!.nome = event.currentTarget.value;
+  }
 
-              </ModalBody>
-              <ModalFooter>
-                <Button onPress={onClose} color={props.cor}>
-                  Fechar
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
-    )
+  const conteudoDaModalComValores = (onClose: Function, props: ModalDeProdutoProps) =>
+    <>
+      {isLoading ? <></> : (
+        <>
+          <ModalHeader className="flex flex-col gap-1">{produtoResposta?.nome}</ModalHeader>
+          <ModalBody>
+            <Input
+              labelPlacement="outside"
+              autoFocus
+              label="Id"
+              placeholder="Id do produto"
+              variant="bordered"
+              isDisabled
+              value={produtoResposta?.id}
+            />
+            <Input
+              labelPlacement="outside"
+              autoFocus
+              label="Sequencial"
+              placeholder="Sequencial do produto"
+              variant="bordered"
+              isDisabled
+              value={produtoResposta?.sequencial?.toString()}
+            />
+            <Input
+              labelPlacement="outside"
+              autoFocus
+              label="Nome"
+              isDisabled={!props.editavel}
+              placeholder="Nome do produto"
+              variant="bordered"
+              defaultValue={produtoResposta?.nome.toString()}
+              onChange={atualizarNome}
+            />
+            <Input
+              labelPlacement="outside"
+              label="Descrição"
+              isDisabled={!props.editavel}
+              placeholder="Descrição do produto"
+              variant="bordered"
+              datatype="string"
+              contentEditable
+              defaultValue={produtoResposta?.descricao?.toString()}
+            />
+            <Input
+              labelPlacement="outside"
+              label="Valor Unitário"
+              isDisabled={!props.editavel}
+              placeholder="0.0"
+              variant="bordered"
+              type="number"
+              defaultValue={produtoResposta?.preco?.toString()}
+            />
+            <Input
+              labelPlacement="outside"
+              label="Quantidade Em Estoque"
+              isDisabled={!props.editavel}
+              placeholder="0.0"
+              type="number"
+              variant="bordered"
+              defaultValue={produtoResposta?.quantidadeEmEstoque?.toString()}
+            />
+          </ModalBody>
+        </>
+      )}
+      <ModalFooter>
+        <Button onPress={onClose} color="primary">
+          Fechar
+        </Button>
+
+        <Button className={props.editavel ? "" : "hidden"} onPress={async () =>
+        {
+          await editarAsync(obterChaveDoProdutoPorId(produtoResposta!.id), produtoResposta!);
+          props.onFechar
+          onClose();
+        }} color={props.cor}>
+          Salvar
+        </Button>
+      </ModalFooter>
+    </>
+
+  return (
+    <Modal isOpen={props.disclosudeProps.isOpen} onOpenChange={props.disclosudeProps.onOpenChange} backdrop="blur">
+
+      <ModalContent>
+        {(onClose: Function) => (
+          conteudoDaModalComValores(onClose, props)
+        )}
+      </ModalContent>
+    </Modal>
+  )
 }

@@ -3,40 +3,34 @@ import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Spinne
 import { Input, Selection, useDisclosure } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
 import { Pagination } from "@nextui-org/pagination";
-import useSWR, { mutate } from "swr";
 
+import { obterAsync, removerAsync, obterChaveDaPagina, obterChaveDoProdutoPorId } from '../../api/produtos'
 import { IResposta, IProduto } from "./types/response";
 import "./styles.css"
 import { IconeDePesquisa } from "./icones/IconeDePesquisa";
 import { PontosVerticais } from "./icones/PontosVerticais";
 import ModalDeProduto from "../ModalDeProduto";
-import ModalDeEdicaoProduto from "../ModalDeEdicaoDeProduto";
-
-const fetcher = (url: string): Promise<IResposta> => fetch(url).then((res) => res.json());
+import useSWR from "swr";
 
 export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantProps)
 {
-  const baseUrl = "https://restless-cherry-2036.fly.dev/api";
+  const disclosureProps = useDisclosure();
+  const opcoesDePaginas: number[] = [5, 10, 20];
+
   const [pageNumber, setPage] = useState(1);
   const [filterValue, setFilterValue] = useState("");
   const [parametrosDePesquisa, setParametrosDePesquisa] = useState("");
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set([]));
-  const disclosureProps = useDisclosure();
-  const disclosurePropsEdicao = useDisclosure();
   const [produtoSelecionado, setProdutoSelecionado] = useState("");
   const [timer, setTimer] = useState<NodeJS.Timeout>();
-  const opcoesDePaginas: number[] = [5, 10, 20]
+  const [editando, setEditando] = useState(false);
 
-  const { data: respostaDeProdutos, error, isLoading } = useSWR<IResposta, Error>(`${baseUrl}/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}&PesquisaTextual=${parametrosDePesquisa}`, fetcher, {
+  const { data: respostaDeProdutos, error, isLoading, mutate } = useSWR<IResposta, Error>(obterChaveDaPagina(pageNumber, rowsPerPage, parametrosDePesquisa), obterAsync, {
     keepPreviousData: true
   });
 
-  const doRefresh = () =>
-  {
-    console.log("refresing");
-    mutate(`${baseUrl}/produto?NumeroDaPagina=${pageNumber}&TamanhoDaPagina=${rowsPerPage}&PesquisaTextual=${parametrosDePesquisa}`);
-  };
+  const doRefresh = () => mutate(respostaDeProdutos);
 
   function formatarMoeda(value: number)
   {
@@ -60,7 +54,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
     descricao: (item) => item.descricao,
     preco: (item) => formatarMoeda(item.preco),
     quantidadeEmEstoque: (item) => formatarQuantidade(item.quantidadeEmEstoque),
-    acoes: (item) => adicionarAcoes(item.id, propriedadesDaTabela, doRefresh, disclosureProps, setProdutoSelecionado, disclosurePropsEdicao)
+    acoes: (item) => adicionarAcoes(item.id, propriedadesDaTabela, doRefresh, disclosureProps, setProdutoSelecionado, setEditando)
   };
 
   const onSearchChange = (value?: string) =>
@@ -175,11 +169,13 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
               <TableRow key={item?.id}>
                 {
                   (columnKey: string) =>
-                    <TableCell>
+                  {
+                    return <TableCell>
                       <div className="long-text-elipses">
                         {columnMap[columnKey] ? columnMap[columnKey](item) : getKeyValue(item, columnKey)}
                       </div>
-                    </TableCell>
+                    </TableCell>;
+                  }
                 }
               </TableRow>
             )}
@@ -187,12 +183,10 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
         </Table>
       </div>
       {
-        produtoSelecionado !== "" ? (
-          <>
-            <ModalDeProduto produtoId={produtoSelecionado} disclosudeProps={disclosureProps} cor={propriedadesDaTabela.color}></ModalDeProduto>
-            <ModalDeEdicaoProduto produtoId={produtoSelecionado} disclosudeProps={disclosurePropsEdicao} cor={propriedadesDaTabela.color}></ModalDeEdicaoProduto>
-          </>
-        ) : null}
+        produtoSelecionado != "" ? (
+            <ModalDeProduto onFechar={mutate(respostaDeProdutos)} editavel={editando} produtoId={produtoSelecionado} disclosudeProps={disclosureProps} cor={propriedadesDaTabela.color}></ModalDeProduto>
+        ) : null
+      }
     </>
   );
 
@@ -210,23 +204,26 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
   }
 }
 
-function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doRefresh: Function, disclosureProps: UseDisclosureProps, setProdutoSelecionado: Function, disclosurePropsEdicao: UseDisclosureProps): React.ReactNode
+function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doRefresh: Function, disclosureProps: UseDisclosureProps, setProdutoSelecionado: Function, setEditando: Function): React.ReactNode
 {
   function onEditar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): void
   {
     setProdutoSelecionado(id);
-    disclosurePropsEdicao.onOpen?.();
+    setEditando(true);
+    disclosureProps.onOpen?.();
   }
 
   async function onDeletar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): Promise<void>
   {
-    await fetch(`https://restless-cherry-2036.fly.dev/api/produto/${id}`, { method: "DELETE" });
-    doRefresh();
+    await removerAsync(obterChaveDoProdutoPorId(id))
+    await doRefresh();
   }
 
   function onVisualizar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): void
   {
+    event.preventDefault();
     setProdutoSelecionado(id);
+    setEditando(false);
     disclosureProps.onOpen?.();
   }
 
