@@ -3,9 +3,9 @@ import { UseDisclosureProps } from "@nextui-org/react";
 
 export interface ModalDeProdutoProps 
 {
-    produtoId: string
+    produtoId: string,
+    atualizarTabela: () => Promise<IResposta | undefined>,
     disclosudeProps: UseDisclosureProps
     cor: string,
-    editavel: boolean,
-    onFechar: () => Promise<IResposta | undefined>
+    editavel: boolean
 }

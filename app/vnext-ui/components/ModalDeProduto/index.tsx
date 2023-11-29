@@ -17,6 +17,24 @@ export default function ModalDeEdicaoProduto(props: ModalDeProdutoProps)
     produtoResposta!.nome = event.currentTarget.value;
   }
 
+  function atualizarDescricao(event: ChangeEvent<HTMLInputElement>): void
+  {
+    console.log(JSON.stringify(produtoResposta));
+    produtoResposta!.descricao = event.currentTarget.value;
+  }
+
+  function atualizarPreco(event: ChangeEvent<HTMLInputElement>): void
+  {
+    console.log(JSON.stringify(produtoResposta));
+    produtoResposta!.preco = parseFloat(event.currentTarget.value);
+  }
+
+  function atualizarQuantidade(event: ChangeEvent<HTMLInputElement>): void
+  {
+    console.log(JSON.stringify(produtoResposta));
+    produtoResposta!.quantidadeEmEstoque = parseFloat(event.currentTarget.value);
+  }
+
   const conteudoDaModalComValores = (onClose: Function, props: ModalDeProdutoProps) =>
     <>
       {isLoading ? <></> : (
@@ -60,6 +78,7 @@ export default function ModalDeEdicaoProduto(props: ModalDeProdutoProps)
               datatype="string"
               contentEditable
               defaultValue={produtoResposta?.descricao?.toString()}
+              onChange={atualizarDescricao}
             />
             <Input
               labelPlacement="outside"
@@ -69,6 +88,7 @@ export default function ModalDeEdicaoProduto(props: ModalDeProdutoProps)
               variant="bordered"
               type="number"
               defaultValue={produtoResposta?.preco?.toString()}
+              onChange={atualizarPreco}
             />
             <Input
               labelPlacement="outside"
@@ -78,6 +98,7 @@ export default function ModalDeEdicaoProduto(props: ModalDeProdutoProps)
               type="number"
               variant="bordered"
               defaultValue={produtoResposta?.quantidadeEmEstoque?.toString()}
+              onChange={atualizarQuantidade}
             />
           </ModalBody>
         </>
@@ -87,19 +108,19 @@ export default function ModalDeEdicaoProduto(props: ModalDeProdutoProps)
           Fechar
         </Button>
 
-        <Button className={props.editavel ? "" : "hidden"} onPress={async () =>
+        <Button color={props.cor} className={props.editavel ? "" : "hidden"} onPress={async () =>
         {
           await editarAsync(obterChaveDoProdutoPorId(produtoResposta!.id), produtoResposta!);
-          props.onFechar
-          onClose();
-        }} color={props.cor}>
+          props.disclosudeProps.onClose?.();
+          props.atualizarTabela();
+        }}>
           Salvar
         </Button>
       </ModalFooter>
     </>
 
   return (
-    <Modal isOpen={props.disclosudeProps.isOpen} onOpenChange={props.disclosudeProps.onOpenChange} backdrop="blur">
+    <Modal isOpen={props.disclosudeProps.isOpen} onOpenChange={props.disclosudeProps.onChange} onClose={props.disclosudeProps.onClose} backdrop="blur">
 
       <ModalContent>
         {(onClose: Function) => (
@@ -109,3 +130,4 @@ export default function ModalDeEdicaoProduto(props: ModalDeProdutoProps)
     </Modal>
   )
 }
+

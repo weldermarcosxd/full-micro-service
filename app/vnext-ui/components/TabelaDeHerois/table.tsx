@@ -27,7 +27,8 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
   const [editando, setEditando] = useState(false);
 
   const { data: respostaDeProdutos, error, isLoading, mutate } = useSWR<IResposta, Error>(obterChaveDaPagina(pageNumber, rowsPerPage, parametrosDePesquisa), obterAsync, {
-    keepPreviousData: true
+    keepPreviousData: false,
+    revalidateOnFocus: false
   });
 
   const doRefresh = () => mutate(respostaDeProdutos);
@@ -184,7 +185,7 @@ export default function TabelaDePersonagens(propriedadesDaTabela: TableVariantPr
       </div>
       {
         produtoSelecionado != "" ? (
-            <ModalDeProduto onFechar={mutate(respostaDeProdutos)} editavel={editando} produtoId={produtoSelecionado} disclosudeProps={disclosureProps} cor={propriedadesDaTabela.color}></ModalDeProduto>
+            <ModalDeProduto atualizarTabela={() => mutate(respostaDeProdutos)} editavel={editando} produtoId={produtoSelecionado} disclosudeProps={disclosureProps} cor={propriedadesDaTabela!.color || "danger"}></ModalDeProduto>
         ) : null
       }
     </>
@@ -208,6 +209,7 @@ function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doR
 {
   function onEditar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): void
   {
+    event.preventDefault();
     setProdutoSelecionado(id);
     setEditando(true);
     disclosureProps.onOpen?.();
@@ -215,6 +217,7 @@ function adicionarAcoes(id: string, propriedadesDaTabela: TableVariantProps, doR
 
   async function onDeletar(event: React.MouseEvent<HTMLLIElement, MouseEvent>, id: string): Promise<void>
   {
+    event.preventDefault();
     await removerAsync(obterChaveDoProdutoPorId(id))
     await doRefresh();
   }
