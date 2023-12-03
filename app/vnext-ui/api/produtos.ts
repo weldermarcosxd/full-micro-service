@@ -24,6 +24,11 @@ export function obterChaveDoProdutoPorId(id: string): string
     return `${baseUrl}/produto/${id}`;
 }
 
+export function obterUrlBaseDeProduto(): string
+{
+    return `${baseUrl}/produto`;
+}
+
 export async function obterAsync(urlDeProdutos: string): Promise<IResposta>
 {
     return await obter<IResposta>(urlDeProdutos);
@@ -42,6 +47,12 @@ export async function removerAsync(urlDoProduto: string): Promise<void>
 export async function editarAsync(urlDoProduto: string, produto: IProduto): Promise<void>
 {
     var parametros = { method: 'PUT', headers: { 'Content-Type': 'application/json'}, body: JSON.stringify(produto) };
+    await atualizar(urlDoProduto, parametros);
+}
+
+export async function criarAsync(urlDoProduto: string, produto: IProduto): Promise<void>
+{
+    var parametros = { method: 'POST', headers: { 'Content-Type': 'application/json'}, body: JSON.stringify(produto) };
     await atualizar(urlDoProduto, parametros);
 }
 

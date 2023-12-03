@@ -20,3 +20,7 @@ button[data-focus-visible="true"].data-\[focus-visible\=true\]\:outline-focus
 [aria-selected="true"] svg.botao-de-acoes{
     color: hsl(var(--nextui-secondary) / var(--nextui-secondary-opacity, var(--tw-text-opacity)));
 }
+
+[data-slot="input-wrapper"]{
+    height: 2.5rem;
+}

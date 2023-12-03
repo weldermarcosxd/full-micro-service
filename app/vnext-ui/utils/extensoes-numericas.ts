@@ -1,4 +1,5 @@
 export class ExtensoesNumericas {
+    
     static formatarValorMonetario(preco: number)
     {
         return new Intl.NumberFormat('pt-BR', {

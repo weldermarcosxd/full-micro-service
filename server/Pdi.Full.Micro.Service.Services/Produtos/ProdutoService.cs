@@ -58,6 +58,8 @@ namespace Pdi.Full.Micro.Service.Services.Produtos
         {
             cancellationToken.ThrowIfCancellationRequested();
 
+            produto.Id = Guid.NewGuid();
+
             if (produto.Sequencial == decimal.Zero)
             {
                 var produtos = _produtoRepository.ObterQueryable();
